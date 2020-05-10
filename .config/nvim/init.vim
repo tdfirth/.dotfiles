@@ -44,6 +44,7 @@ set signcolumn=yes
 
 " Keybindings
 nnoremap ; :
+xnoremap ; :
 let mapleader = " "
 
 " fzf
