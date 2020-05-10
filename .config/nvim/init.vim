@@ -11,6 +11,9 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" Navigation
+:Plug 'christoomey/vim-tmux-navigator'
+
 " Language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -45,17 +48,15 @@ let mapleader = " "
 
 " fzf
 nnoremap <silent> <C-o> :GFiles<CR>
+nnoremap <silent> <C-i> :Files<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
+nnoremap <silent> <C-m> :Marks<CR>
 nnoremap <C-f> :Rg<Space>
 nnoremap <Leader>ss :Rg <C-R>=expand("<cword>")<CR><CR>
 
 " Buffers
 nnoremap <C-n> :bn<CR>
 nnoremap <C-p> :bp<CR>
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
-nnoremap <C-h> <C-w><C-h>
 
 " Editing
 nnoremap <Leader>h :noh<CR>
