@@ -3,6 +3,7 @@ call plug#begin()
 " Appearance
 Plug 'chriskempson/base16-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'tdfirth/vim-base16-lightline'
 Plug 'andymass/vim-matchup'
 Plug 'machakann/vim-highlightedyank'
 
@@ -42,6 +43,10 @@ set expandtab
 set shortmess+=c
 set signcolumn=yes
 
+let g:lightline = {
+            \ 'colorscheme': 'base16'
+            \ }
+
 set autoread
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
   \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
@@ -49,8 +54,6 @@ autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 " Keybindings
-nnoremap ; :
-xnoremap ; :
 let mapleader = " "
 
 " fzf
