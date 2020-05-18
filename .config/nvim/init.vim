@@ -13,7 +13,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Navigation
-:Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'preservim/nerdtree'
 
 " Language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -43,6 +44,9 @@ set expandtab
 set shortmess+=c
 set signcolumn=yes
 
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+
 let g:lightline = {
             \ 'colorscheme': 'base16'
             \ }
@@ -52,6 +56,8 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
   \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+hi MatchParen ctermbg=black guibg=black cterm=bold,italic gui=bold,italic
 
 " Keybindings
 let mapleader = " "
@@ -67,13 +73,21 @@ nnoremap <Leader>ss :Rg <C-R>=expand("<cword>")<CR><CR>
 " Buffers
 nnoremap <C-n> :bn<CR>
 nnoremap <C-p> :bp<CR>
+nnoremap <Leader>bd :bprevious<CR>:bdelete #<CR>
 
 " Editing
-nnoremap <Leader>h :noh<CR>
+nnoremap <silent> <CR> :noh<CR><CR>
 
 " Panes
 nnoremap <Leader>sv :vsp<CR>
 nnoremap <Leader>sh :sp<CR>
+
+" NERDTree
+set mouse=a
+let g:NERDTreeMouseMode=3
+nnoremap <C-t> :NERDTree<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Coc
 " Autocomplete navigation
@@ -126,3 +140,5 @@ nmap <silent> <Leader>dn <Plug>(coc-diagnostic-next)
 " Rust
 
 " Python
+nmap <silent> <Leader>pb :norm oimport ipdb; ipdb.set_trace()<esc>:w<CR>
+
