@@ -1,6 +1,21 @@
 {
-        "python.jediEnabled": false,
-        "python.formatting.provider": "black",
-        "rust-analyzer.serverPath": "/home/tom/.local/bin/rust-analyzer",
-        "html.autoClosingTags": true
+    "python.jediEnabled": false,
+    "python.formatting.provider": "black",
+    "rust-analyzer.serverPath": "/home/tom/.local/bin/rust-analyzer",
+    "html.autoClosingTags": true,
+    "languageserver": {
+        "ocaml": {
+            "command": "opam",
+            "args": [
+                "config",
+                "exec",
+                "--",
+                "ocamllsp"
+            ],
+            "filetypes": [
+                "ocaml",
+                "reason"
+            ]
+        }
+    }
 }
