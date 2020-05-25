@@ -58,7 +58,10 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
-hi MatchParen ctermbg=black guibg=black cterm=bold,italic gui=bold,italic
+augroup matchup_matchparen_highlight
+    autocmd!
+    autocmd ColorScheme * hi MatchParen ctermbg=black guibg=black cterm=bold,italic gui=bold,italic
+augroup END
 
 " Keybindings
 let mapleader = " "
