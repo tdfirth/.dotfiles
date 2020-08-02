@@ -3,6 +3,7 @@
     "python.formatting.provider": "black",
     "rust-analyzer.serverPath": "/home/tom/.local/bin/rust-analyzer",
     "html.autoClosingTags": true,
+    "scss.validate": true,
     "languageserver": {
         "ocaml": {
             "command": "opam",
