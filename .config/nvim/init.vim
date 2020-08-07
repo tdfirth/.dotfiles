@@ -23,6 +23,7 @@ Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'reasonml-editor/vim-reason-plus'
+Plug 'elixir-editors/vim-elixir'
 
 call plug#end()
 
