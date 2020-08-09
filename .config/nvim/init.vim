@@ -17,13 +17,14 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'preservim/nerdtree'
 
 " Language support
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'elixir-editors/vim-elixir'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -110,51 +111,51 @@ let g:fzf_action = {
 
 " Coc
 " Autocomplete navigation
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-       call CocAction('doHover')
-  endif
-endfunction
-
-" Format
-command! -nargs=0 Format :call CocAction('format')
-command! -nargs=0 OptimiseImports :call CocAction('runCommand', 'editor.action.organizeImport')
-
-" Rename
-command! -nargs=0 RenameSymbol :call CocActionAsync('rename')
-nnoremap <silent><Leader>rn :RenameSymbol<CR>
-
-" Navigate Diagnostics
-nmap <silent> <Leader>dp <Plug>(coc-diagnostic-prev)
-nmap <silent> <Leader>dn <Plug>(coc-diagnostic-next)
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+"
+"" Use <c-space> to trigger completion.
+"inoremap <silent><expr> <c-space> coc#refresh()
+"
+"" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+"" position. Coc only does snippet and additional edit on confirm.
+"" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+"if exists('*complete_info')
+"  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"else
+"  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"endif
+"
+"" Use K to show documentation in preview window.
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
+"
+"function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+"       call CocAction('doHover')
+"  endif
+"endfunction
+"
+"" Format
+"command! -nargs=0 Format :call CocAction('format')
+"command! -nargs=0 OptimiseImports :call CocAction('runCommand', 'editor.action.organizeImport')
+"
+"" Rename
+"command! -nargs=0 RenameSymbol :call CocActionAsync('rename')
+"nnoremap <silent><Leader>rn :RenameSymbol<CR>
+"
+"" Navigate Diagnostics
+"nmap <silent> <Leader>dp <Plug>(coc-diagnostic-prev)
+"nmap <silent> <Leader>dn <Plug>(coc-diagnostic-next)
 
 " Rust
 
