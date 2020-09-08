@@ -162,3 +162,6 @@ let g:fzf_action = {
 " Python
 nmap <silent> <Leader>pb :norm oimport ipdb; ipdb.set_trace()<esc>:w<CR>
 
+" GO
+let g:go_highlight_diagnostic_errors = 0
+let g:go_highlight_diagnostic_warnings = 0
