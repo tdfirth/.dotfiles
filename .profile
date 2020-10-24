@@ -17,7 +17,7 @@ export EDITOR=nvim
 # go
 
 # py
-export VIRTUALENV_WRAPPER=/usr/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 export WORKON_PROJECT_HOME=$HOME/.virtualenvs
 source $HOME/.local/bin/virtualenvwrapper.sh
 
