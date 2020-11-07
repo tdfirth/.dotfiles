@@ -22,8 +22,8 @@ export WORKON_PROJECT_HOME=$HOME/.virtualenvs
 source $HOME/.local/bin/virtualenvwrapper.sh
 
 # ocaml
-test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-eval $(opam env)
+# test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+# eval $(opam env)
 
 # util
 alias inflate='ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'
