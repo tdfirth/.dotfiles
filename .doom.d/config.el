@@ -25,9 +25,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-zenburn)
-(setq doom-font (font-spec :family "Source Code Pro" :size 15)
-      doom-variable-pitch-font (font-spec :family "Helvetica Neue" :size 15)
+(setq doom-theme 'doom-nord)
+(setq doom-font (font-spec :family "Source Code Pro" :size 16)
+      doom-variable-pitch-font (font-spec :family "Helvetica Neue" :size 16)
       doom-big-font (font-spec :family "Source Code Pro" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -61,3 +61,17 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(map! :nve "C-w" #'+hydra/window-nav/body)
+
+(defun comment-or-uncomment-region-or-line ()
+  "Comments or uncomments the region or the current line if there's no active region."
+  (interactive)
+  (let (beg end)
+    (if (region-active-p)
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position)))
+    (comment-or-uncomment-region beg end)
+    (forward-line)))
+
+(map! :nve "C-;" #'comment-or-uncomment-region-or-line)
