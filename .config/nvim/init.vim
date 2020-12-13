@@ -6,6 +6,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'tdfirth/vim-base16-lightline'
 Plug 'andymass/vim-matchup'
 Plug 'machakann/vim-highlightedyank'
+Plug 'arcticicestudio/nord-vim'
 
 " Search
 Plug 'airblade/vim-rooter'
@@ -15,8 +16,6 @@ Plug 'junegunn/fzf.vim'
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'preservim/nerdtree'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Language
 Plug 'cespare/vim-toml'
@@ -27,10 +26,7 @@ Plug 'tpope/vim-fireplace'
 
 call plug#end()
 
-if filereadable(expand("~/.vimrc_background"))
-	let base16colorspace=256
-	source ~/.vimrc_background
-endif
+colorscheme nord
 
 set shell=/bin/bash
 set noshowcmd
@@ -50,7 +46,7 @@ let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 
 let g:lightline = {
-            \ 'colorscheme': 'base16'
+            \ 'colorscheme': 'nord'
             \ }
 
 set autoread
