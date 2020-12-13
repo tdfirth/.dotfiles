@@ -61,6 +61,10 @@ augroup END
 
 " Keybindings
 let mapleader = " "
+nnoremap <silent> <c-h> <c-w>h
+nnoremap <silent> <c-j> <c-w>j
+nnoremap <silent> <c-k> <c-w>k
+nnoremap <silent> <c-l> <c-w>l
 
 " fzf
 nnoremap <silent> <C-o> :GFiles<CR>
