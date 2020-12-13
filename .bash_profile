@@ -10,3 +10,8 @@ fi
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
+
+# Load anything that is not checked in to GH.
+if [ -f ~/.profilesecrets ]; then
+	. ~/.profilesecrets
+fi
