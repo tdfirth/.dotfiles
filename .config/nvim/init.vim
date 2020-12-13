@@ -6,31 +6,31 @@ Plug 'itchyny/lightline.vim'
 Plug 'tdfirth/vim-base16-lightline'
 Plug 'andymass/vim-matchup'
 Plug 'machakann/vim-highlightedyank'
+Plug 'arcticicestudio/nord-vim'
 
 " Search
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Navigation
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'preservim/nerdtree'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-
 " Language
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'tpope/vim-fireplace'
+
+" Tools
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
-if filereadable(expand("~/.vimrc_background"))
-	let base16colorspace=256
-	source ~/.vimrc_background
-endif
+colorscheme nord
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:lightline = {
+            \ 'colorscheme': 'nord'
+            \ }
 
 set shell=/bin/bash
 set noshowcmd
@@ -45,15 +45,10 @@ set shiftwidth=4
 set expandtab
 set shortmess+=c
 set signcolumn=yes
-
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-
-let g:lightline = {
-            \ 'colorscheme': 'base16'
-            \ }
-
+set hidden
 set autoread
+set colorcolumn=80
+
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
   \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
 autocmd FileChangedShellPost *
@@ -82,12 +77,6 @@ nnoremap <Leader>bd :bprevious<CR>:bdelete #<CR>
 
 " Editing
 nnoremap <silent> <CR> :noh<CR><CR>
-
-" NERDTree
-set mouse=a
-let g:NERDTreeMouseMode=3
-nnoremap <C-t> :NERDTree<CR>
-autocmd StdinReadPre * let s:std_in=1
 
 " FZF
 function! s:copy_results(lines)
