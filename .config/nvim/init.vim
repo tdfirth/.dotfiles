@@ -1,11 +1,7 @@
 " Plugins
 call plug#begin()
 " Appearance
-Plug 'chriskempson/base16-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'tdfirth/vim-base16-lightline'
-Plug 'andymass/vim-matchup'
-Plug 'machakann/vim-highlightedyank'
 Plug 'arcticicestudio/nord-vim'
 
 " Search
@@ -22,16 +18,27 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Tools
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
+" UI
 colorscheme nord
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
+set termguicolors
+let g:nord_italic_comments = 1
 let g:lightline = {
             \ 'colorscheme': 'nord'
             \ }
+augroup nord-theme-overrides
+  autocmd!
+  autocmd ColorScheme nord highlight QuickFixLine ctermfg=15 guifg=#ECEFF4 ctermbg=0 guibg=#3B4252
+augroup END
 
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+
+" Editor
 set shell=/bin/bash
 set noshowcmd
 set updatetime=300
@@ -48,16 +55,19 @@ set signcolumn=yes
 set hidden
 set autoread
 set colorcolumn=80
+set incsearch
+set wildmenu
+set mouse=a
+set cursorline
 
+" Always open the quick fix list full width at the bottom.
+autocmd FileType qf wincmd J
+
+" Reload files when change detected.
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
   \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-
-augroup matchup_matchparen_highlight
-    autocmd!
-    autocmd ColorScheme * hi MatchParen ctermbg=black guibg=black cterm=bold,italic gui=bold,italic
-augroup END
 
 " Keybindings
 let mapleader = " "
@@ -72,7 +82,6 @@ nnoremap <silent> <C-i> :Files<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-m> :Marks<CR>
 nnoremap <C-f> :Rg<Space>
-nnoremap <Leader>ss :Rg <C-R>=expand("<cword>")<CR><CR>
 
 " Buffers
 nnoremap <C-n> :bn<CR>
@@ -103,6 +112,5 @@ nmap <silent> <Leader>pb :norm oimport ipdb; ipdb.set_trace()<esc>:w<CR>
 " GO
 let g:go_highlight_diagnostic_errors = 0
 let g:go_highlight_diagnostic_warnings = 0
-
-" Clojure
+let g:go_list_height = 10
 
