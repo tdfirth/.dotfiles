@@ -100,16 +100,16 @@ env:
 #tabspaces: 2
 
 font:
+  size: 13.0
   normal:
     family: Source Code Pro
   bold:
-    family: Source Code Pro
+    family: Source Code Pro Semibold
   italic:
-    family: Source Code Pro
-    size: 12.0
+    family: Source Code Pro Italic
   offset:
     x: 0
-    y: 2
+    y: 0
   use_thin_strokes: false
 
 # Font configuration
