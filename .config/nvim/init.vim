@@ -2,7 +2,7 @@
 call plug#begin()
 " Appearance
 Plug 'itchyny/lightline.vim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'tdfirth/nord-vim', {'branch': 'develop'}
 
 " Search
 Plug 'airblade/vim-rooter'
@@ -24,11 +24,11 @@ Plug 'preservim/nerdtree'
 call plug#end()
 
 " UI
-colorscheme nord
 set termguicolors
-let g:nord_italic_comments = 1
+let g:nord_italic_comments=1
+colorscheme nordl
 let g:lightline = {
-            \ 'colorscheme': 'nord'
+            \ 'colorscheme': 'nordl'
             \ }
 augroup quick-fix-styles
   autocmd!
