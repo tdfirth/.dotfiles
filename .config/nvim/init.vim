@@ -26,14 +26,25 @@ call plug#end()
 " UI
 set termguicolors
 let g:nord_italic_comments=1
-colorscheme nordl
+colorscheme nordd
 let g:lightline = {
-            \ 'colorscheme': 'nordl'
+            \ 'colorscheme': 'nordd'
             \ }
-augroup quick-fix-styles
+
+function! s:ReloadLightLine()
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction
+
+augroup ui
   autocmd!
   autocmd FileType qf wincmd J
   autocmd ColorScheme nord highlight QuickFixLine ctermfg=15 guifg=#ECEFF4 ctermbg=0 guibg=#3B4252
+
+  command Dark colorscheme nordd | let g:lightline = {'colorscheme': 'nordd'} | call s:ReloadLightLine()
+  command Light colorscheme nordl | let g:lightline = {'colorscheme': 'nordl'} | call s:ReloadLightLine()
+
 augroup END
 
 let g:netrw_banner = 0
