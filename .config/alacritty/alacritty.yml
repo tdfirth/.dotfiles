@@ -201,11 +201,17 @@ colors:
     foreground: '#d8dee9'
     dim_foreground: '#a5abb6'
   cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
+    text: '#E5E9F0'
+    cursor: '#75829c'
   vi_mode_cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
+    text: '#E5E9F0'
+    cursor: '#75829c'
+  # cursor:
+  #   text: '#2e3440'
+  #   cursor: '#d8dee9'
+  # vi_mode_cursor:
+  #   text: '#2e3440'
+  #   cursor: '#d8dee9'
   selection:
     text: CellForeground
     background: '#4c566a'
