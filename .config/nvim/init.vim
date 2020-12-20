@@ -25,23 +25,28 @@ call plug#end()
 
 " UI
 set termguicolors
-colorscheme nordl
-let g:lightline = {
-            \ 'colorscheme': 'nordl'
-            \ }
-function! s:ReloadLightLine()
+
+function! s:ReloadTheme()
+  runtime theme.vim
+  if g:theme == "nordl"
+    colorscheme nordl
+  else
+    colorscheme nordd
+  endif
+  let g:lightline = {
+              \ 'colorscheme': g:theme
+              \ }
   call lightline#init()
   call lightline#colorscheme()
   call lightline#update()
 endfunction
-call s:ReloadLightLine()
+
+call s:ReloadTheme()
 
 augroup UISettings
   autocmd!
   autocmd FileType qf wincmd J
-
-  command! Dark colorscheme nordd | let g:lightline = {'colorscheme': 'nordd'} | call s:ReloadLightLine()
-  command! Light colorscheme nordl | let g:lightline = {'colorscheme': 'nordl'} | call s:ReloadLightLine()
+  command! ReloadTheme call s:ReloadTheme()
 augroup END
 
 let g:netrw_banner = 0
@@ -90,6 +95,7 @@ nnoremap <silent> <C-j> <c-w>j
 nnoremap <silent> <C-k> <c-w>k
 nnoremap <silent> <C-l> <c-w>l
 nnoremap <C-f> :NERDTree<CR>
+nnoremap <Leader>rt :ReloadTheme<CR>
 
 " fzf
 nnoremap <silent> <C-o> :GFiles<CR>
