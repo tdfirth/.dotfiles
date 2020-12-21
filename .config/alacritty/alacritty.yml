@@ -41,7 +41,7 @@ colors:
       background: '#88c0d0'
       foreground: CellBackground
   selection:
-    background: '#4c566a'
+    background: '#D8DEE9'
     text: CellForeground
   vi_mode_cursor:
     cursor: '#2e3440'
