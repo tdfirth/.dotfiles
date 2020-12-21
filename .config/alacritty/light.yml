@@ -12,7 +12,7 @@ colors:
     cursor: '#2e3440'
   selection:
     text: CellForeground
-    background: '#4c566a'
+    background: '#D8DEE9'
   search:
     matches:
       foreground: CellBackground
