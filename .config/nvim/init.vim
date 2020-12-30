@@ -14,6 +14,8 @@ Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x' }
 
 " Tools
 Plug 'tpope/vim-eunuch'
@@ -94,7 +96,7 @@ nnoremap <silent> <C-h> <c-w>h
 nnoremap <silent> <C-j> <c-w>j
 nnoremap <silent> <C-k> <c-w>k
 nnoremap <silent> <C-l> <c-w>l
-nnoremap <C-f> :NERDTree<CR>
+nnoremap <C-f> :NERDTreeToggle<CR>
 nnoremap <Leader>rt :ReloadTheme<CR>
 
 " fzf
@@ -127,6 +129,9 @@ let g:fzf_action = {
   \ 'ctrl-o': function('s:copy_results'),
   \ }
 
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+
 " Python
 augroup python-config
   autocmd!
@@ -138,6 +143,7 @@ augroup python-config
     \ setlocal autoindent      |
     \ setlocal fileformat=unix |
     \ setlocal colorcolumn=79
+  autocmd BufWritePre *.py execute ':Black'
   nmap <silent> <Leader>pb :norm oimport ipdb; ipdb.set_trace()<esc>:w<CR>
 augroup END
 

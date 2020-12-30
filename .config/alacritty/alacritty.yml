@@ -9,8 +9,8 @@ colors:
     white: '#eceff4'
     yellow: '#ebcb8b'
   cursor:
-    cursor: '#2e3440'
-    text: '#d8dee9'
+    cursor: '#d8dee9'
+    text: '#2e3440'
   dim:
     black: '#373e4d'
     blue: '#68809a'
@@ -30,9 +30,9 @@ colors:
     white: '#e5e9f0'
     yellow: '#ebcb8b'
   primary:
-    background: '#E5E9F0'
+    background: '#2e3440'
     dim_foreground: '#a5abb6'
-    foreground: '#2e3440'
+    foreground: '#d8dee9'
   search:
     bar:
       background: '#434c5e'
@@ -41,11 +41,11 @@ colors:
       background: '#88c0d0'
       foreground: CellBackground
   selection:
-    background: '#D8DEE9'
+    background: '#4c566a'
     text: CellForeground
   vi_mode_cursor:
-    cursor: '#2e3440'
-    text: '#d8dee9'
+    cursor: '#d8dee9'
+    text: '#2e3440'
 env:
   WINIT_X11_SCALE_FACTOR: '1'
 font:
