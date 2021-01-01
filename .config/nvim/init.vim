@@ -167,7 +167,7 @@ augroup END
 " Web
 augroup web-config
   autocmd!
-  au BufNewFile,BufRead *.js, *.html, *.css
+  au BufNewFile,BufRead *.js,*.html,*.css
     \ setlocal expandtab       |
     \ setlocal tabstop=2       |
     \ setlocal softtabstop=2   |
