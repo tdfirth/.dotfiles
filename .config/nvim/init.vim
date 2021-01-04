@@ -71,11 +71,6 @@ set wildmenu
 set mouse=a
 set cursorline
 set noexpandtab
-"set tabstop=4
-"set softtabstop=4
-"set shiftwidth=4
-"set smarttab
-"set autoindent
 set backspace=indent,eol,start
 if &history < 1000
   set history=1000
@@ -96,20 +91,19 @@ nnoremap <silent> <C-h> <c-w>h
 nnoremap <silent> <C-j> <c-w>j
 nnoremap <silent> <C-k> <c-w>k
 nnoremap <silent> <C-l> <c-w>l
-nnoremap <C-f> :NERDTreeToggle<CR>
-nnoremap <Leader>rt :ReloadTheme<CR>
-
+nnoremap <silent> <C-p> :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>rt :ReloadTheme<CR>
 " fzf
-nnoremap <silent> <C-o> :GFiles<CR>
-nnoremap <silent> <C-i> :Files<CR>
-nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <C-m> :Marks<CR>
+nnoremap <silent> <C-Space> :GFiles<CR>
+nnoremap <silent> <Leader><Leader> :Files<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>m :Marks<CR>
 nnoremap <C-_> :Rg<Space>
 
 " Buffers
-nnoremap <C-n> :bn<CR>
-nnoremap <C-p> :bp<CR>
-nnoremap <Leader>bd :bprevious<CR>:bdelete #<CR>
+nnoremap <Leader>p :bn<CR>
+nnoremap <Leader>n :bp<CR>
+nnoremap <Leader>k :bprevious<CR>:bdelete #<CR>
 
 " Editing
 nnoremap <silent> <CR> :noh<CR><CR>
@@ -144,7 +138,7 @@ augroup python-config
     \ setlocal fileformat=unix |
     \ setlocal colorcolumn=79
   autocmd BufWritePre *.py execute ':Black'
-  nmap <silent> <Leader>pb :norm oimport ipdb; ipdb.set_trace()<esc>:w<CR>
+  nmap <silent> <Leader>lb :norm oimport ipdb; ipdb.set_trace()<esc>:w<CR>
 augroup END
 
 " Go
@@ -167,7 +161,7 @@ augroup END
 " Web
 augroup web-config
   autocmd!
-  au BufNewFile,BufRead *.js, *.html, *.css
+  au BufNewFile,BufRead *.js,*.html,*.css
     \ setlocal expandtab       |
     \ setlocal tabstop=2       |
     \ setlocal softtabstop=2   |
