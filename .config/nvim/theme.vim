@@ -1,1 +1,1 @@
-let g:theme = "nordd"
+let g:theme = "nordl"

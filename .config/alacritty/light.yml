@@ -1,7 +1,7 @@
 # nord = https://github.com/arcticicestudio/nord-alacritty
 colors:
   primary:
-    background: '#E5E9F0'
+    background: '#eceff4'
     foreground: '#2e3440'
     dim_foreground: '#a5abb6'
   cursor:

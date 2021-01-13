@@ -51,9 +51,6 @@ augroup UISettings
   command! ReloadTheme call s:ReloadTheme()
 augroup END
 
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-
 " Editor
 set shell=/usr/bin/env\ bash
 set noshowcmd
