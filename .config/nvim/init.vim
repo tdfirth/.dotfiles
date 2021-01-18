@@ -89,11 +89,12 @@ nnoremap <silent> <C-j> <c-w>j
 nnoremap <silent> <C-k> <c-w>k
 nnoremap <silent> <C-l> <c-w>l
 nnoremap <silent> <C-p> :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>ff :NERDTreeFind<CR>
 nnoremap <silent> <Leader>rt :ReloadTheme<CR>
+
 " fzf
-nnoremap <silent> <C-Space> :GFiles<CR>
+nnoremap <silent> <C-Space> :Buffers<CR>
 nnoremap <silent> <Leader><Leader> :Files<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>m :Marks<CR>
 nnoremap <C-_> :Rg<Space>
 
@@ -150,9 +151,16 @@ augroup go-config
     \ setlocal smartindent     |
     \ setlocal fileformat=unix |
     \ setlocal colorcolumn=80
-  let g:go_highlight_diagnostic_errors = 0
-  let g:go_highlight_diagnostic_warnings = 0
+  let g:go_highlight_diagnostic_errors = 1
+  let g:go_highlight_diagnostic_warnings = 1
+  let g:go_auto_type_info = 1
   let g:go_list_height = 10
+  au FileType go nmap <buffer> <silent> <Leader>gb <Plug>(go-build)
+  au FileType go nmap <buffer> <silent> <Leader>gd <Plug>(go-def) 
+  au FileType go nmap <buffer> <silent> <Leader>gi <Plug>(go-imports) 
+  au FileType go nmap <buffer> <silent> <Leader>gr <Plug>(go-rename) 
+  au FileType go nmap <buffer> <silent> <Leader>gtt <Plug>(go-test)
+  au FileType go nmap <buffer> <silent> <Leader>gtf <Plug>(go-test-func)
 augroup END
 
 " Web
@@ -176,3 +184,16 @@ augroup md-config
     \ setlocal colorcolumn=80  |
     \ setlocal textwidth=80
 augroup md-config
+
+" Protobuf
+augroup proto-config
+  autocmd!
+  au BufNewFile,BufRead *.proto
+    \ setlocal expandtab       |
+    \ setlocal tabstop=2       |
+    \ setlocal softtabstop=2   |
+    \ setlocal shiftwidth=2    |
+    \ setlocal autoindent      |
+    \ setlocal fileformat=unix |
+    \ setlocal colorcolumn=80
+augroup END
