@@ -151,8 +151,8 @@ augroup go-config
     \ setlocal smartindent     |
     \ setlocal fileformat=unix |
     \ setlocal colorcolumn=80
-  let g:go_highlight_diagnostic_errors = 1
-  let g:go_highlight_diagnostic_warnings = 1
+  let g:go_highlight_diagnostic_errors = 0
+  let g:go_highlight_diagnostic_warnings = 0
   let g:go_auto_type_info = 1
   let g:go_list_height = 10
   au FileType go nmap <buffer> <silent> <Leader>gb <Plug>(go-build)
