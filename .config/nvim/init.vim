@@ -16,8 +16,10 @@ Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x' }
+Plug 'vim-erlang/vim-erlang-runtime'
 
 " Tools
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -77,10 +79,13 @@ if &tabpagemax < 50
 endif
 
 " Reload files when change detected.
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
-  \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
-autocmd FileChangedShellPost *
-  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+augroup filereloader
+  autocmd!
+  autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+    \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+  autocmd FileChangedShellPost *
+    \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+augroup END
 
 " Keybindings
 let mapleader = " "
@@ -94,7 +99,7 @@ nnoremap <silent> <Leader>rt :ReloadTheme<CR>
 
 " fzf
 nnoremap <silent> <C-Space> :Buffers<CR>
-nnoremap <silent> <Leader><Leader> :Files<CR>
+nnoremap <silent> <Leader><Leader> :GFiles --cached --others --exclude-standard<CR>
 nnoremap <silent> <Leader>m :Marks<CR>
 nnoremap <C-_> :Rg<Space>
 
@@ -196,4 +201,17 @@ augroup proto-config
     \ setlocal autoindent      |
     \ setlocal fileformat=unix |
     \ setlocal colorcolumn=80
+augroup END
+
+" Erlang
+augroup erlang-config
+  autocmd!
+  au BufNewFile,BufRead *.erl
+    \ setlocal expandtab       |
+    \ setlocal tabstop=4       |
+    \ setlocal softtabstop=4   |
+    \ setlocal shiftwidth=4    |
+    \ setlocal autoindent      |
+    \ setlocal fileformat=unix |
+    \ setlocal colorcolumn=100
 augroup END
