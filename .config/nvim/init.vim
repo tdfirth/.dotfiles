@@ -149,13 +149,13 @@ augroup go-config
   autocmd!
   au BufNewFile,BufRead *.go
     \ setlocal noexpandtab     |
-    \ setlocal tabstop=8       |
-    \ setlocal softtabstop=8   |
-    \ setlocal shiftwidth=8    |
+    \ setlocal tabstop=4       |
+    \ setlocal softtabstop=4   |
+    \ setlocal shiftwidth=4    |
     \ setlocal autoindent      |
     \ setlocal smartindent     |
     \ setlocal fileformat=unix |
-    \ setlocal colorcolumn=80
+    \ setlocal colorcolumn=100
   let g:go_highlight_diagnostic_errors = 0
   let g:go_highlight_diagnostic_warnings = 0
   let g:go_auto_type_info = 1
