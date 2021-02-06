@@ -98,10 +98,28 @@ nnoremap <silent> <Leader>ff :NERDTreeFind<CR>
 nnoremap <silent> <Leader>rt :ReloadTheme<CR>
 
 " fzf
-nnoremap <silent> <C-Space> :Buffers<CR>
+nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <Leader><Leader> :GFiles --cached --others --exclude-standard<CR>
 nnoremap <silent> <Leader>m :Marks<CR>
 nnoremap <C-_> :Rg<Space>
+nnoremap <silent> <C-Space> yiw:Rg <C-r>"<CR>
+vnoremap <silent> <C-Space> y:Rg <C-r>"<CR>
+
+let g:fzf_layout = { 'down': '40%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " Buffers
 nnoremap <Leader>p :bn<CR>
@@ -213,5 +231,5 @@ augroup erlang-config
     \ setlocal shiftwidth=4    |
     \ setlocal autoindent      |
     \ setlocal fileformat=unix |
-    \ setlocal colorcolumn=100
+    \ setlocal colorcolumn=80
 augroup END

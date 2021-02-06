@@ -1,15 +1,15 @@
 # nord = https://github.com/arcticicestudio/nord-alacritty
 colors:
   primary:
-    background: '#eceff4'
+    background: '#ffffff'
     foreground: '#2e3440'
     dim_foreground: '#a5abb6'
   cursor:
     text: '#d8dee9'
-    cursor: '#2e3440'
+    cursor: '#5D86B6'
   vi_mode_cursor:
     text: '#d8dee9'
-    cursor: '#2e3440'
+    cursor: '#5D86B6'
   selection:
     text: CellForeground
     background: '#D8DEE9'
