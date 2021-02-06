@@ -9,7 +9,7 @@ colors:
     white: '#eceff4'
     yellow: '#ebcb8b'
   cursor:
-    cursor: '#2e3440'
+    cursor: '#5D86B6'
     text: '#d8dee9'
   dim:
     black: '#373e4d'
@@ -30,7 +30,7 @@ colors:
     white: '#e5e9f0'
     yellow: '#ebcb8b'
   primary:
-    background: '#eceff4'
+    background: '#ffffff'
     dim_foreground: '#a5abb6'
     foreground: '#2e3440'
   search:
@@ -44,7 +44,7 @@ colors:
     background: '#D8DEE9'
     text: CellForeground
   vi_mode_cursor:
-    cursor: '#2e3440'
+    cursor: '#5D86B6'
     text: '#d8dee9'
 env:
   WINIT_X11_SCALE_FACTOR: '1'
