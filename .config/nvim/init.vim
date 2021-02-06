@@ -178,6 +178,10 @@ augroup go-config
   let g:go_highlight_diagnostic_warnings = 0
   let g:go_auto_type_info = 1
   let g:go_list_height = 10
+  let g:go_fmt_command = "golines"
+  let g:go_fmt_options = {
+      \ 'golines': '-m 100',
+      \ }
   au FileType go nmap <buffer> <silent> <Leader>gb <Plug>(go-build)
   au FileType go nmap <buffer> <silent> <Leader>gd <Plug>(go-def) 
   au FileType go nmap <buffer> <silent> <Leader>gi <Plug>(go-imports) 
