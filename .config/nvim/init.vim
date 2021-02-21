@@ -180,7 +180,7 @@ augroup go-config
   let g:go_list_height = 10
   let g:go_fmt_command = "golines"
   let g:go_fmt_options = {
-      \ 'golines': '-m 100',
+      \ 'golines': '-m 100 --base-formatter gofmt',
       \ }
   au FileType go nmap <buffer> <silent> <Leader>gb <Plug>(go-build)
   au FileType go nmap <buffer> <silent> <Leader>gd <Plug>(go-def) 
