@@ -182,12 +182,12 @@ augroup go-config
   let g:go_fmt_options = {
       \ 'golines': '-m 100 --base-formatter gofmt',
       \ }
-  au FileType go nmap <buffer> <silent> <Leader>gb <Plug>(go-build)
-  au FileType go nmap <buffer> <silent> <Leader>gd <Plug>(go-def) 
-  au FileType go nmap <buffer> <silent> <Leader>gi <Plug>(go-imports) 
-  au FileType go nmap <buffer> <silent> <Leader>gr <Plug>(go-rename) 
-  au FileType go nmap <buffer> <silent> <Leader>gtt <Plug>(go-test)
-  au FileType go nmap <buffer> <silent> <Leader>gtf <Plug>(go-test-func)
+  au FileType go nmap <buffer> <silent> <Leader>lb <Plug>(go-build)
+  au FileType go nmap <buffer> <silent> <Leader>ld <Plug>(go-def) 
+  au FileType go nmap <buffer> <silent> <Leader>li <Plug>(go-imports) 
+  au FileType go nmap <buffer> <silent> <Leader>lr <Plug>(go-rename) 
+  au FileType go nmap <buffer> <silent> <Leader>ltt <Plug>(go-test)
+  au FileType go nmap <buffer> <silent> <Leader>ltf <Plug>(go-test-func)
 augroup END
 
 " Web
