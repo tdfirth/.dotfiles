@@ -70,6 +70,10 @@ set wildmenu
 set mouse=a
 set cursorline
 set noexpandtab
+set showmatch
+set scrolloff=999
+set list
+set listchars=tab:›\ ,eol:¬,trail:⋅
 set backspace=indent,eol,start
 if &history < 1000
   set history=1000
@@ -77,6 +81,12 @@ endif
 if &tabpagemax < 50
   set tabpagemax=50
 endif
+
+" Completion 
+set wildmode=list:longest " Wildcard matches show a list, matching the longest first
+set wildignore+=.git      " Ignore version control repos
+set wildignore+=*.pyc     " Ignore Python compiled files
+set wildignore+=*.swp     " Ignore vim backups
 
 " Reload files when change detected.
 augroup filereloader
@@ -88,6 +98,10 @@ augroup filereloader
 augroup END
 
 " Keybindings
+" Makes navigating wrapped lines feel more natural.
+map j gj
+map k gk
+
 let mapleader = " "
 nnoremap <silent> <C-h> <c-w>h
 nnoremap <silent> <C-j> <c-w>j
@@ -122,9 +136,9 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Buffers
-nnoremap <Leader>p :bn<CR>
-nnoremap <Leader>n :bp<CR>
-nnoremap <Leader>k :bprevious<CR>:bdelete #<CR>
+nnoremap <silent> <Leader>p :bn<CR>
+nnoremap <silent> <Leader>n :bp<CR>
+nnoremap <silent> <Leader>k :bprevious<CR>:bdelete #<CR>
 
 " Editing
 nnoremap <silent> <CR> :noh<CR><CR>
@@ -146,6 +160,9 @@ let g:fzf_action = {
 
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
+
+" Fugitive
+nnoremap <silent> <Leader>gs :vertical Git<CR>
 
 " Python
 augroup python-config
@@ -180,14 +197,14 @@ augroup go-config
   let g:go_list_height = 10
   let g:go_fmt_command = "golines"
   let g:go_fmt_options = {
-      \ 'golines': '-m 100',
+      \ 'golines': '-m 100 --base-formatter gofmt',
       \ }
-  au FileType go nmap <buffer> <silent> <Leader>gb <Plug>(go-build)
-  au FileType go nmap <buffer> <silent> <Leader>gd <Plug>(go-def) 
-  au FileType go nmap <buffer> <silent> <Leader>gi <Plug>(go-imports) 
-  au FileType go nmap <buffer> <silent> <Leader>gr <Plug>(go-rename) 
-  au FileType go nmap <buffer> <silent> <Leader>gtt <Plug>(go-test)
-  au FileType go nmap <buffer> <silent> <Leader>gtf <Plug>(go-test-func)
+  au FileType go nmap <buffer> <silent> <Leader>lb <Plug>(go-build)
+  au FileType go nmap <buffer> <silent> <Leader>ld <Plug>(go-def) 
+  au FileType go nmap <buffer> <silent> <Leader>li <Plug>(go-imports) 
+  au FileType go nmap <buffer> <silent> <Leader>lr <Plug>(go-rename) 
+  au FileType go nmap <buffer> <silent> <Leader>ltt <Plug>(go-test)
+  au FileType go nmap <buffer> <silent> <Leader>ltf <Plug>(go-test-func)
 augroup END
 
 " Web
@@ -229,6 +246,19 @@ augroup END
 augroup erlang-config
   autocmd!
   au BufNewFile,BufRead *.erl
+    \ setlocal expandtab       |
+    \ setlocal tabstop=4       |
+    \ setlocal softtabstop=4   |
+    \ setlocal shiftwidth=4    |
+    \ setlocal autoindent      |
+    \ setlocal fileformat=unix |
+    \ setlocal colorcolumn=80
+augroup END
+
+" Bash
+augroup bash-config
+  autocmd!
+  au BufNewFile,BufRead *.sh,*.bash
     \ setlocal expandtab       |
     \ setlocal tabstop=4       |
     \ setlocal softtabstop=4   |
