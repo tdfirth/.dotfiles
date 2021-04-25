@@ -17,6 +17,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x' }
 Plug 'vim-erlang/vim-erlang-runtime'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 " Tools
 Plug 'tpope/vim-dispatch'
@@ -71,7 +73,7 @@ set mouse=a
 set cursorline
 set noexpandtab
 set showmatch
-set scrolloff=999
+set scrolloff=12
 set list
 set listchars=tab:›\ ,eol:¬,trail:⋅
 set backspace=indent,eol,start
@@ -83,10 +85,10 @@ if &tabpagemax < 50
 endif
 
 " Completion 
-set wildmode=list:longest " Wildcard matches show a list, matching the longest first
-set wildignore+=.git      " Ignore version control repos
-set wildignore+=*.pyc     " Ignore Python compiled files
-set wildignore+=*.swp     " Ignore vim backups
+set wildmode=full     " Wildcard matches show a list, matching the longest first
+set wildignore+=.git  " Ignore version control repos
+set wildignore+=*.pyc " Ignore Python compiled files
+set wildignore+=*.swp " Ignore vim backups
 
 " Reload files when change detected.
 augroup filereloader
@@ -219,15 +221,15 @@ augroup web-config
     \ setlocal fileformat=unix
 augroup END
 
-" Markdown
-augroup md-config
+" Writing
+augroup writing-config
   autocmd!
-  au BufNewFile,BufRead *.md
+  au BufNewFile,BufRead *.tex,*.txt
     \ setlocal expandtab       |
     \ setlocal fileformat=unix |
     \ setlocal colorcolumn=80  |
     \ setlocal textwidth=80
-augroup md-config
+augroup writin-config
 
 " Protobuf
 augroup proto-config
@@ -266,4 +268,18 @@ augroup bash-config
     \ setlocal autoindent      |
     \ setlocal fileformat=unix |
     \ setlocal colorcolumn=80
+augroup END
+
+" Markdown
+augroup proto-config
+  autocmd!
+  au BufNewFile,BufRead *.md
+    \ setlocal expandtab       |
+    \ setlocal fileformat=unix |
+    \ setlocal colorcolumn=80  |
+    \ setlocal textwidth=80
+  setlocal conceallevel=2
+  let g:vim_markdown_math = 1
+  let g:vim_markdown_frontmatter = 1
+  let g:vim_markdown_folding_disabled = 1
 augroup END

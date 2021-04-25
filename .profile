@@ -1,3 +1,6 @@
+# xset
+xset r rate 300 40
+
 # .profile
 alias sudo="sudo "
 alias vim="nvim"
