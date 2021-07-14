@@ -26,8 +26,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-nord)
-(setq doom-font (font-spec :family "Source Code Pro" :size 16)
-      doom-variable-pitch-font (font-spec :family "Helvetica Neue" :size 16)
+(setq doom-font (font-spec :family "Source Code Pro" :size 18)
+      doom-variable-pitch-font (font-spec :family "Helvetica Neue" :size 18)
       doom-big-font (font-spec :family "Source Code Pro" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
