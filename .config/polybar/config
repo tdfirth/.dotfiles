@@ -61,10 +61,14 @@ modules-right = pulseaudio-control wlan powermenu
 
 tray-position = right
 tray-padding = 4
+tray-offset-x = 0
+tray-offset-y = 0
+tray-maxsize = 16
 tray-detached = false
+tray-scale = 1.0
+tray-background = ${colors.top-background}
 
 wm-restack = i3
-
 override-redirect = true
 
 [module/i3]
@@ -114,13 +118,13 @@ interval = 3.0
 format-connected = <ramp-signal> 
 format-prefix = 1
 format-disconnected = <label-disconnected>
-label-disconnected = "WiFi Off"
+label-disconnected = WiFi Off
 label-disconnected-font = 1
 label-disconnected-foreground = ${bar/topbar.foreground}
 
-ramp-signal-0 = "WiFi On"
-ramp-signal-1 = "WiFi On"
-ramp-signal-2 = "WiFi On"
+ramp-signal-0 = WiFi On
+ramp-signal-1 = WiFi On
+ramp-signal-2 = WiFi On
 ramp-signal-font = 1
 
 [module/date]
