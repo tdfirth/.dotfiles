@@ -99,6 +99,10 @@ vim.api.nvim_set_keymap(
 -- close buffer
 vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>", { noremap = true, silent = true })
 
+-- Type hint
+vim.api.nvim_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
+-- vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
+
 local mappings = {
   ["c"] = "Close Buffer",
   ["f"] = "Find File",
@@ -150,17 +154,16 @@ local mappings = {
 -- vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
 
     name = "LSP",
+    d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition"},
+    D = {"<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration"},
+    R = {"<cmd>lua vim.lsp.buf.references()<CR>", "Find References"},
+    i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Find Implementation"},
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    d = {
-      "<cmd>Telescope lsp_document_diagnostics<cr>",
-      "Document Diagnostics",
-    },
     w = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
       "Workspace Diagnostics",
     },
     f = { "<cmd>Neoformat<cr>", "Format" },
-    i = { "<cmd>LspInfo<cr>", "Info" },
     j = { "<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = O.lsp.popup_border}})<cr>", "Next Diagnostic" },
     k = { "<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = O.lsp.popup_border}})<cr>", "Prev Diagnostic" },
     q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
