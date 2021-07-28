@@ -142,6 +142,13 @@ local mappings = {
   },
 
   l = {
+
+-- vim.cmd "nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>"
+-- vim.cmd "nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>"
+-- vim.cmd "nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>"
+-- vim.cmd "nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>"
+-- vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
+
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = {
@@ -184,27 +191,6 @@ local mappings = {
     i = { ":TSConfigInfo<cr>", "Info" },
   },
 }
-
-if O.plugin.symbol_outline.active then
-  vim.api.nvim_set_keymap("n", "<leader>o", ":SymbolsOutline<CR>", { noremap = true, silent = true })
-  mappings["o"] = "Symbols outline"
-end
-
-if O.plugin.ts_playground.active then
-  vim.api.nvim_set_keymap("n", "<leader>Th", ":TSHighlightCapturesUnderCursor<CR>", { noremap = true, silent = true })
-  mappings[""] = "Highlight Capture"
-end
-
-if O.plugin.telescope_project.active then
-  -- open projects
-  vim.api.nvim_set_keymap(
-    "n",
-    "<leader>P",
-    ":lua require'telescope'.extensions.project.project{}<CR>",
-    { noremap = true, silent = true }
-  )
-  mappings["P"] = "Projects"
-end
 
 for k, v in pairs(O.user_which_key) do
   mappings[k] = v

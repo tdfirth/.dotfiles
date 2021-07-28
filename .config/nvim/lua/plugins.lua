@@ -29,8 +29,8 @@ return require("packer").startup(function(use)
   use "airblade/vim-rooter"
   use 'tpope/vim-dispatch'
   use 'tpope/vim-eunuch'
-  use { "neovim/nvim-lspconfig" }
-  use { "kabouzeid/nvim-lspinstall", event = "VimEnter" }
+  use "neovim/nvim-lspconfig"
+  use "kabouzeid/nvim-lspinstall"
   -- Telescope
   use { "nvim-lua/popup.nvim" }
   use { "nvim-lua/plenary.nvim" }

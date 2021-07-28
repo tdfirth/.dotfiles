@@ -56,9 +56,5 @@ vim.api.nvim_set_keymap("x", "<A-k>", ":m '<-2<CR>gv-gv", { noremap = true, sile
 vim.api.nvim_set_keymap("n", "]q", ":cnext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "[q", ":cprev<CR>", { noremap = true, silent = true })
 
--- Better nav for omnicomplete
-vim.cmd 'inoremap <expr> <c-j> ("\\<C-n>")'
-vim.cmd 'inoremap <expr> <c-k> ("\\<C-p>")'
-
 vim.cmd 'vnoremap p "0p'
 vim.cmd 'vnoremap P "0P'

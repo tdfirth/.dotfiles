@@ -6,10 +6,14 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
-    winblend = 0,
+    winblend = 20,
     layout_strategy = "horizontal",
+    show_line = false;
+    prompt_title = false;
+    results_title = false;
+    preview_title = false;
     layout_config = {
-      width = 0.95,
+      width = 0.90,
       height = 0.85,
       prompt_position = "top",
 
@@ -40,6 +44,8 @@ telescope.setup {
     sorting_strategy = "ascending",
     scroll_strategy = "cycle",
     color_devicons = true,
+
+    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
 
     file_ignore_patterns = {
       ".git/.*",
@@ -81,5 +87,5 @@ telescope.setup {
 }
 
 require("telescope").load_extension("fzy_native")
-pcall(require("telescope").load_extension, "fzf")
+require("telescope").load_extension("fzf")
 
