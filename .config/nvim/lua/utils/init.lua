@@ -1,9 +1,9 @@
 local utils = {}
 
 function utils.reload_lv_config()
-  vim.cmd "source ~/.config/nvim/lv-config.lua"
+  vim.cmd "source ~/.config/nvim/settings.lua"
   vim.cmd "source ~/.config/nvim/lua/plugins.lua"
-  vim.cmd "source ~/.config/nvim/lua/lv-neoformat/init.lua"
+  vim.cmd "source ~/.config/nvim/lua/config/neoformat/init.lua"
   vim.cmd ":PackerCompile"
   vim.cmd ":PackerInstall"
 end
@@ -64,8 +64,6 @@ utils.define_augroups {
       "*",
       "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
     },
-    { "BufWritePost", "lv-config.lua", "lua require('utils').reload_lv_config()" },
-    -- { "VimLeavePre", "*", "set title set titleold=" },
   },
   _solidity = {
     { "BufWinEnter", ".tf", "setlocal filetype=hcl" },

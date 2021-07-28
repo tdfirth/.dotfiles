@@ -54,32 +54,6 @@ for obj, suffix in pairs(textobj_suffixes) do
 end
 vim.g.ts_hint_textobject_keys = O.treesitter.hint_labels -- Requires https://github.com/mfussenegger/nvim-ts-hint-textobject/pull/2
 
--- Add which key menu entries
-local status, wk = pcall(require, "which-key")
-if status then
-  local normal = {
-    mode = "n", -- Normal mode
-  }
-  local operators = {
-    mode = "o", -- Operator mode
-  }
-  wk.register(textobj_sel_keymaps, operators)
-  wk.register({
-    ["m"] = "Hint Objects",
-    ["."] = "Textsubject",
-    [";"] = "Textsubject-big",
-  }, operators)
-  wk.register(textobj_swap_keymaps, normal)
-  wk.register({
-    [textobj_prefixes["swap"]] = "Swap",
-    -- [textobj_prefixes["goto_next"]] = "Jump [",
-    -- [textobj_prefixes["goto_previous"]] = "Jump ]"
-  }, normal)
-  wk.register(textobj_move_keymaps["goto_next_start"], normal)
-  wk.register(textobj_move_keymaps["goto_next_end"], normal)
-  wk.register(textobj_move_keymaps["goto_previous_start"], normal)
-  wk.register(textobj_move_keymaps["goto_previous_end"], normal)
-end
 local status_ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
   return

@@ -29,6 +29,7 @@ return require("packer").startup(function(use)
   use "airblade/vim-rooter"
   use 'tpope/vim-dispatch'
   use 'tpope/vim-eunuch'
+  use "tpope/vim-commentary"
   use "neovim/nvim-lspconfig"
   use "kabouzeid/nvim-lspinstall"
   -- Telescope
@@ -37,7 +38,7 @@ return require("packer").startup(function(use)
   use { "tjdevries/astronauta.nvim" }
   use {
     "tdfirth/telescope.nvim",
-    config = [[require('lv-telescope')]],
+    config = [[require('config.telescope')]],
   }
   use "nvim-telescope/telescope-fzy-native.nvim"
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -46,7 +47,7 @@ return require("packer").startup(function(use)
     "hrsh7th/nvim-compe",
     event = "InsertEnter",
     config = function()
-      require("lv-compe").config()
+      require("config.compe").config()
     end,
   }
   -- Treesitter
@@ -56,7 +57,7 @@ return require("packer").startup(function(use)
   use {
     "sbdchd/neoformat",
     config = function()
-      require "lv-neoformat"
+      require "config.neoformat"
     end,
     event = "BufRead",
   }
@@ -65,40 +66,18 @@ return require("packer").startup(function(use)
     "kyazdani42/nvim-tree.lua",
     commit = "fd7f60e242205ea9efc9649101c81a07d5f458bb",
     config = function()
-      require("lv-nvimtree").config()
+      require("config.nvimtree").config()
     end,
-  }
-
-  use {
-    "lewis6991/gitsigns.nvim",
-
-    config = function()
-      require("lv-gitsigns").config()
-    end,
-    event = "BufRead",
   }
 
   -- whichkey
   use {
     "folke/which-key.nvim",
     config = function()
-      require "lv-which-key"
+      require "config.which-key"
     end,
     event = "BufWinEnter",
   }
-
-  -- Autopairs
-  use {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    after = { "telescope.nvim" },
-    config = function()
-      require "lv-autopairs"
-    end,
-  }
-
-  use "tpope/vim-commentary"
-
   -- Color
   use { "christianchiarulli/nvcode-color-schemes.vim", opt = true }
 
@@ -109,7 +88,7 @@ return require("packer").startup(function(use)
   use {
     "glepnir/galaxyline.nvim",
     config = function()
-      require "lv-galaxyline"
+      require "config.galaxyline"
     end,
   }
 
@@ -118,7 +97,7 @@ return require("packer").startup(function(use)
     "lervag/vimtex",
     ft = "tex",
     config = function()
-      require "lv-vimtex"
+      require "config.vimtex"
     end,
   }
 
