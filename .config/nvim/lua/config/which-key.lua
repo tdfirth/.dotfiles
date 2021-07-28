@@ -41,13 +41,8 @@ which_key.setup {
 }
 
 -- Set leader
-if O.leader_key == " " or O.leader_key == "space" then
-  vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
-  vim.g.mapleader = " "
-else
-  vim.api.nvim_set_keymap("n", O.leader_key, "<NOP>", { noremap = true, silent = true })
-  vim.g.mapleader = O.leader_key
-end
+vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
+vim.g.mapleader = " "
 
 local opts = {
   mode = "n", -- NORMAL mode
@@ -73,7 +68,6 @@ vim.api.nvim_set_keymap("n", "<leader>f", ":Telescope find_files<CR>", { noremap
 vim.api.nvim_set_keymap("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-_>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 
--- vim.api.nvim_set_keymap("n", "<C-Space>", ":Telescope grep_string<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-Space>", ':lua require("telescope.builtin").grep_string { search = vim.fn.expand("<cword>") }<CR>', { noremap = true, silent = true })
 
 function vim.get_visual_selection()
@@ -101,7 +95,6 @@ vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>", { noremap = true, 
 
 -- Type hint
 vim.api.nvim_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
--- vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
 
 local mappings = {
   ["c"] = "Close Buffer",
@@ -168,10 +161,7 @@ local mappings = {
     k = { "<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = O.lsp.popup_border}})<cr>", "Prev Diagnostic" },
     q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    s = {
-      O.plugin.symbol_outline.active and "<cmd>SymbolsOutline<cr>" or "<cmd> Telescope lsp_document_symbols<cr>",
-      "Document Symbols",
-    },
+    s = { "<cmd> Telescope lsp_document_symbols<cr>", "Document Symbols" },
     S = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",

@@ -6,33 +6,7 @@ USER = vim.fn.expand "$USER"
 
 O = {
   format_on_save = true,
-  auto_close_tree = 0,
-  auto_complete = true,
-  colorcolumn = "99999", -- fixes indentline for now
-  colorscheme = "nord",
-  clipboard = "unnamedplus",
-  hidden_files = true,
-  wrap_lines = false,
-  spell = false,
-  spelllang = "en",
-  number = true,
-  relative_number = false,
-  number_width = 4,
-  shift_width = 2,
-  tab_stop = 2,
-  cmdheight = 1,
-  cursorline = true,
-  shell = "bash",
-  scrolloff = 8,
-  timeoutlen = 100,
-  nvim_tree_disable_netrw = 0,
-  ignore_case = true,
-  smart_case = true,
-  lushmode = false,
-  hl_search = false,
   document_highlight = true,
-  transparent_window = false,
-  leader_key = "space",
   vnsip_dir = vim.fn.stdpath "config" .. "/snippets",
 
   -- @usage pass a table with your desired languages
@@ -73,23 +47,12 @@ O = {
 
   plugin = {
     -- Builtins
-    colorizer = { active = false },
-    ts_playground = { active = false },
     ts_context_commentstring = { active = false },
-    ts_hintobjects = { active = false },
-    ts_autotag = { active = false },
-    ts_rainbow = { active = false },
     ts_textobjects = { active = false },
     ts_textsubjects = { active = false },
     telescope_fzy = { active = true },
-    telescope_project = { active = false },
-    indent_line = { active = false },
-    symbol_outline = { active = false },
     debug = { active = false },
     dap_install = { active = false },
-    diffview = { active = false },
-    trouble = { active = false },
-    sanegx = { active = false },
   },
 
   user_which_key = {},
@@ -103,23 +66,9 @@ O = {
   },
 
   lang = {
-    cmake = {},
-    clang = {
-      diagnostics = {
-        virtual_text = { spacing = 0, prefix = "" },
-        signs = true,
-        underline = true,
-      },
-      cross_file_rename = true,
-      header_insertion = "never",
-    },
-    css = {
-      virtual_text = true,
-    },
     docker = {},
     graphql = {},
     go = {},
-    html = {},
     json = {
       diagnostics = {
         virtual_text = { spacing = 0, prefix = "" },
@@ -150,14 +99,6 @@ O = {
         use_library_code_types = true,
       },
     },
-    ruby = {
-      diagnostics = {
-        virtualtext = { spacing = 0, prefix = "" },
-        signs = true,
-        underline = true,
-      },
-      filetypes = { "rb", "erb", "rakefile", "ruby" },
-    },
     rust = {
       rust_tools = {
         active = false,
@@ -181,28 +122,7 @@ O = {
         underline = true,
       },
     },
-    tailwindcss = {
-      active = false,
-      filetypes = {
-        "html",
-        "css",
-        "scss",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-      },
-    },
     terraform = {},
-    tsserver = {
-      -- @usage can be 'eslint'
-      linter = "",
-      diagnostics = {
-        virtual_text = { spacing = 0, prefix = "" },
-        signs = true,
-        underline = true,
-      },
-    },
     vim = {},
     yaml = {},
   },
