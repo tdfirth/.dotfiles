@@ -1,3 +1,6 @@
+vim.api.nvim_set_keymap("i", "<C-c>", "<ESC>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-c>", "<ESC>", { silent = true })
+
 -- better window movement
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { silent = true })
@@ -31,11 +34,6 @@ end
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 
--- I hate escape
-vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "kj", "<ESC>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
-
 -- Tab switch buffer
 vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-TAB>", ":bprevious<CR>", { noremap = true, silent = true })
@@ -51,10 +49,6 @@ vim.api.nvim_set_keymap("x", "<A-k>", ":m '<-2<CR>gv-gv", { noremap = true, sile
 -- QuickFix
 vim.api.nvim_set_keymap("n", "]q", ":cnext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "[q", ":cprev<CR>", { noremap = true, silent = true })
-
--- Better nav for omnicomplete
-vim.cmd 'inoremap <expr> <c-j> ("\\<C-n>")'
-vim.cmd 'inoremap <expr> <c-k> ("\\<C-p>")'
 
 vim.cmd 'vnoremap p "0p'
 vim.cmd 'vnoremap P "0P'

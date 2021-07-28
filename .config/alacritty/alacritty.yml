@@ -1,90 +1,200 @@
-colors:
-  bright:
-    black: '#4c566a'
-    blue: '#81a1c1'
-    cyan: '#8fbcbb'
-    green: '#a3be8c'
-    magenta: '#b48ead'
-    red: '#bf616a'
-    white: '#eceff4'
-    yellow: '#ebcb8b'
-  cursor:
-    cursor: '#5D86B6'
-    text: '#d8dee9'
-  dim:
-    black: '#373e4d'
-    blue: '#68809a'
-    cyan: '#6d96a5'
-    green: '#809575'
-    magenta: '#8c738c'
-    red: '#94545d'
-    white: '#aeb3bb'
-    yellow: '#b29e75'
-  normal:
-    black: '#3b4252'
-    blue: '#81a1c1'
-    cyan: '#88c0d0'
-    green: '#a3be8c'
-    magenta: '#b48ead'
-    red: '#bf616a'
-    white: '#e5e9f0'
-    yellow: '#ebcb8b'
-  primary:
-    background: '#ffffff'
-    dim_foreground: '#a5abb6'
-    foreground: '#2e3440'
-  search:
-    bar:
-      background: '#434c5e'
-      foreground: '#d8dee9'
-    matches:
-      background: '#88c0d0'
-      foreground: CellBackground
-  selection:
-    background: '#D8DEE9'
-    text: CellForeground
-  vi_mode_cursor:
-    cursor: '#5D86B6'
-    text: '#d8dee9'
+# Define
+schemes:
+  everforest_dark_hard: &everforest_dark_hard
+    primary:
+      background: '#2b3339'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+  everforest_dark_medium: &everforest_dark_medium
+    primary:
+      background: '#2f383e'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+  everforest_dark_soft: &everforest_dark_soft
+    primary:
+      background: '#323d43'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+  everforest_light_hard: &everforest_light_hard
+    primary:
+      background: '#fff9e8'
+      foreground: '#5c6a72'
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+  everforest_light_medium: &everforest_light_medium
+    primary:
+      background: '#fdf6e3'
+      foreground: '#5c6a72'
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+  everforest_light_soft: &everforest_light_soft
+    primary:
+      background: '#f8f0dc'
+      foreground: '#5c6a72'
+    normal:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+    bright:
+      black:   '#5c6a72'
+      red:     '#f85552'
+      green:   '#8da101'
+      yellow:  '#dfa000'
+      blue:    '#3a94c5'
+      magenta: '#df69ba'
+      cyan:    '#35a77c'
+      white:   '#dfddc8'
+window:
+  decorations: Buttonless
+colors: *everforest_dark_medium
+  # primary:
+  #   background: "#fbf1c7"
+  #   foreground: "#3c3836"
+  # normal:
+  #   black: "#fbf1c7"
+  #   red: "#cc241d"
+  #   green: "#98971a"
+  #   yellow: "#d79921"
+  #   blue: "#458588"
+  #   magenta: "#b16286"
+  #   cyan: "#689d6a"
+  #   white: "#7c6f64"
+  # bright:
+  #   black: "#928374"
+  #   red: "#9d0006"
+  #   green: "#79740e"
+  #   yellow: "#b57614"
+  #   blue: "#076678"
+  #   magenta: "#8f3f71"
+  #   cyan: "#427b58"
+  #   white: "#3c3836"
 env:
-  WINIT_X11_SCALE_FACTOR: '1'
+  WINIT_X11_SCALE_FACTOR: "1"
 font:
   bold:
-    family: Source Code Pro Semibold
+    family: Inconsolata Nerd Font
   italic:
-    family: Source Code Pro Italic
+    family: Inconsolata Nerd Font
   normal:
-    family: Source Code Pro
+    family: Inconsolata Nerd Font
   offset:
     x: 0
-    y: 0
-  size: 13.0
-  use_thin_strokes: false
+    y: 2
+  size: 15
+  use_thin_strokes: true
 key_bindings:
-- action: Paste
-  key: V
-  mods: Control|Shift
-- action: Copy
-  key: C
-  mods: Control|Shift
-- action: PasteSelection
-  key: Insert
-  mods: Shift
-- action: ResetFontSize
-  key: Key0
-  mods: Control
-- action: IncreaseFontSize
-  key: Equals
-  mods: Control
-- action: IncreaseFontSize
-  key: NumpadAdd
-  mods: Control
-- action: DecreaseFontSize
-  key: NumpadSubtract
-  mods: Control
-- action: DecreaseFontSize
-  key: Minus
-  mods: Control
-- action: ToggleFullscreen
-  key: Return
-  mods: Alt
+  - action: Paste
+    key: V
+    mods: Control|Shift
+  - action: Copy
+    key: C
+    mods: Control|Shift
+  - action: PasteSelection
+    key: Insert
+    mods: Shift
+  - action: ResetFontSize
+    key: Key0
+    mods: Control
+  - action: IncreaseFontSize
+    key: Equals
+    mods: Control
+  - action: IncreaseFontSize
+    key: NumpadAdd
+    mods: Control
+  - action: DecreaseFontSize
+    key: NumpadSubtract
+    mods: Control
+  - action: DecreaseFontSize
+    key: Minus
+    mods: Control
+  - action: ToggleFullscreen
+    key: Return
+    mods: Alt

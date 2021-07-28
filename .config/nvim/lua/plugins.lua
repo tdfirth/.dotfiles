@@ -30,6 +30,9 @@ return require("packer").startup(function(use)
   use 'tpope/vim-dispatch'
   use 'tpope/vim-eunuch'
   use "tpope/vim-commentary"
+
+  use 'sainnhe/everforest'
+
   use "neovim/nvim-lspconfig"
   use "kabouzeid/nvim-lspinstall"
   -- Telescope
@@ -85,11 +88,24 @@ return require("packer").startup(function(use)
   use { "kyazdani42/nvim-web-devicons" }
 
   -- Status Line and Bufferline
+  -- use {
+  --   "glepnir/galaxyline.nvim",
+  --   config = function()
+  --     require "config.galaxyline"
+  --   end,
+  -- }
   use {
-    "glepnir/galaxyline.nvim",
+    'hoob3rt/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
-      require "config.galaxyline"
-    end,
+      require('lualine').setup {
+        options = {
+          theme = 'auto',
+          section_separators = '',
+          component_separators = ''
+        }
+      }
+    end
   }
 
   -- LANGUAGE SPECIFIC GOES HERE
@@ -108,32 +124,6 @@ return require("packer").startup(function(use)
   }
   use "Julian/lean.nvim"
 
-  -- Javascript / Typescript
-  use {
-    "jose-elias-alvarez/nvim-lsp-ts-utils",
-    ft = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
-    },
-  }
-
-  -- Pretty parentheses
-  use {
-    "p00f/nvim-ts-rainbow",
-    disable = not O.plugin.ts_rainbow.active,
-  }
-
-  -- Autotags <div>|</div>
-  use {
-    "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
-    disable = not O.plugin.ts_autotag.active,
-  }
-
   -- Custom semantic text objects
   use {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -144,13 +134,6 @@ return require("packer").startup(function(use)
   use {
     "RRethy/nvim-treesitter-textsubjects",
     disable = not O.plugin.ts_textsubjects.active,
-  }
-
-  -- Text objects using hint labels
-  use {
-    "mfussenegger/nvim-ts-hint-textobject",
-    event = "BufRead",
-    disable = not O.plugin.ts_hintobjects.active,
   }
 
   for _, plugin in pairs(O.user_plugins) do
