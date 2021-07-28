@@ -65,7 +65,7 @@ vim.api.nvim_set_keymap("n", "<Leader>h", ':let @/=""<CR>', { noremap = true, si
 vim.api.nvim_set_keymap(
   "n",
   "<C-p>",
-  ":lua require'lv-nvimtree'.toggle_tree()<CR>",
+  ":lua require'config.nvimtree'.toggle_tree()<CR>",
   { noremap = true, silent = true }
 )
 

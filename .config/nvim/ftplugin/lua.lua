@@ -5,7 +5,7 @@ if not require("utils").check_lsp_client_active "sumneko_lua" then
 
   require("lspconfig").sumneko_lua.setup {
     cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-    on_attach = require("lsp").common_on_attach,
+    on_attach = require("config.lsp").common_on_attach,
     settings = {
       Lua = {
         runtime = {

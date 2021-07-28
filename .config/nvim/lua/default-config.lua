@@ -95,7 +95,7 @@ O = {
   user_which_key = {},
 
   user_plugins = {
-    -- use lv-config.lua for this not put here
+    -- use config.lua for this not put here
   },
 
   user_autocommands = {

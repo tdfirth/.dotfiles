@@ -17,13 +17,35 @@ vim.fn.sign_define(
 )
 
 -- Set Default Prefix.
--- Note: You can set a prefix per lsp server in the lv-globals.lua file
+-- Note: You can set a prefix per lsp server in the globals.lua file
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
   signs = true,
   underline = true,
 })
-vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
+
+function print_diagnostics(opts, bufnr, line_nr, client_id)
+  opts = opts or {}
+
+  bufnr = bufnr or 0
+  line_nr = line_nr or (vim.api.nvim_win_get_cursor(0)[1] - 1)
+
+  local line_diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr, line_nr, opts, client_id)
+  if vim.tbl_isempty(line_diagnostics) then return end
+
+  local diagnostic_message = ""
+  for i, diagnostic in ipairs(line_diagnostics) do
+    diagnostic_message = diagnostic_message .. string.format("%d: %s", i, diagnostic.message or "")
+    if i ~= #line_diagnostics then
+      diagnostic_message = diagnostic_message .. "\n"
+    end
+  end
+  --print only shows a single line, echo blocks requiring enter, pick your poison
+  vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
+end
+
+-- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
+vim.cmd [[autocmd CursorHold * lua print_diagnostics()]]
 vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -89,59 +111,10 @@ if O.document_highlight then
   end
 end
 
-function lsp_config.tsserver_on_attach(client, bufnr)
-  -- lsp_config.common_on_attach(client, bufnr)
-  client.resolved_capabilities.document_formatting = false
-
-  local ts_utils = require "nvim-lsp-ts-utils"
-
-  -- defaults
-  ts_utils.setup {
-    debug = false,
-    disable_commands = false,
-    enable_import_on_completion = false,
-    import_all_timeout = 5000, -- ms
-
-    -- eslint
-    eslint_enable_code_actions = true,
-    eslint_enable_disable_comments = true,
-    eslint_bin = O.lang.tsserver.linter,
-    eslint_config_fallback = nil,
-    eslint_enable_diagnostics = true,
-
-    -- formatting
-    enable_formatting = O.lang.tsserver.autoformat,
-    formatter = O.lang.tsserver.formatter,
-    formatter_config_fallback = nil,
-
-    -- parentheses completion
-    complete_parens = false,
-    signature_help_in_parens = false,
-
-    -- update imports on file move
-    update_imports_on_move = false,
-    require_confirmation_on_move = false,
-    watch_dir = nil,
-  }
-
-  -- required to fix code action ranges
-  ts_utils.setup_client(client)
-
-  -- TODO: keymap these?
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", {silent = true})
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", {silent = true})
-end
-
 require("utils").define_augroups {
   _general_lsp = {
     { "FileType", "lspinfo", "nnoremap <silent> <buffer> q :q<CR>" },
   },
 }
 
--- Use a loop to conveniently both setup defined servers
--- and map buffer local keybindings when the language server attaches
--- local servers = {"pyright", "tsserver"}
--- for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
 return lsp_config

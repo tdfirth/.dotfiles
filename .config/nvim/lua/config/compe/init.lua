@@ -36,7 +36,6 @@ M.config = function()
       -- ultisnips = {kind = "  "},
       -- treesitter = {kind = "  "},
       emoji = { kind = " ﲃ  (Emoji)", filetypes = { "markdown", "text" } },
-      -- for emoji press : (idk if that in compe tho)
     },
   }
   local status_ok, compe = pcall(require, "compe")
