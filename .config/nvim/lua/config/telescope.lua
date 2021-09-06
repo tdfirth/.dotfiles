@@ -6,7 +6,7 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
-    winblend = 20,
+    winblend = 0,
     layout_strategy = "horizontal",
     show_line = false;
     prompt_title = false;
