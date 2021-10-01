@@ -4,9 +4,7 @@
 --
 local M = {}
 local status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not status_ok then
-  return
-end
+if not status_ok then return end
 --
 M.config = function()
   local g = vim.g
@@ -16,7 +14,7 @@ M.config = function()
   g.nvim_tree_side = "left"
   g.nvim_tree_width = 30
   g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
-  g.nvim_tree_auto_open = 1
+  g.nvim_tree_auto_open = 0
   g.nvim_tree_auto_close = 0
   g.nvim_tree_quit_on_open = 0
   g.nvim_tree_follow = 1
@@ -33,7 +31,7 @@ M.config = function()
     git = 1,
     folders = 1,
     files = 1,
-    folder_arrows = 1,
+    folder_arrows = 1
   }
 
   vim.g.nvim_tree_icons = {
@@ -46,29 +44,34 @@ M.config = function()
       renamed = "➜",
       deleted = "",
       untracked = "U",
-      ignored = "◌",
+      ignored = "◌"
     },
     folder = {
       default = "",
       open = "",
       empty = "",
       empty_open = "",
-      symlink = "",
-    },
+      symlink = ""
+    }
   }
   local tree_cb = nvim_tree_config.nvim_tree_callback
 
   vim.g.nvim_tree_bindings = {
-    { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-    { key = "h", cb = tree_cb "close_node" },
-    { key = "v", cb = tree_cb "vsplit" },
+    {
+      key = { "l", "<CR>", "o" },
+      cb = tree_cb "edit"
+    }, {
+      key = "h",
+      cb = tree_cb "close_node"
+    }, {
+      key = "v",
+      cb = tree_cb "vsplit"
+    }
   }
 end
 
 local view_status_ok, view = pcall(require, "nvim-tree.view")
-if not view_status_ok then
-  return
-end
+if not view_status_ok then return end
 M.toggle_tree = function()
   if view.win_open() then
     require("nvim-tree").close()
