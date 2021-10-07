@@ -1,5 +1,5 @@
 # xset
-xset r rate 300 40
+xset r rate 250 50
 
 # .profile
 alias sudo="sudo "
@@ -26,3 +26,7 @@ eval $(opam env)
 
 # util
 alias inflate='ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'
+
+# asdf
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
