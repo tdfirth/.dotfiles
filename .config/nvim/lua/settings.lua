@@ -2,6 +2,7 @@
 
 local cmd = vim.cmd
 local opt = vim.opt
+local vfn = vim.fn
 
 ---  VIM ONLY COMMANDS  ---
 
@@ -17,6 +18,7 @@ vim.g.everforest_sign_column_background = 'none'
 vim.g.everforest_better_performance = 1
 vim.g.everforest_background = 'hard'
 vim.g.colors_name = "everforest"
+-- vim.g.colors_name = "plain"
 
 ---  SETTINGS  ---
 
@@ -29,7 +31,7 @@ opt.backup = false -- creates a backup file
 opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 opt.colorcolumn = "99999"
-opt.completeopt = { "menuone", "noselect" }
+opt.completeopt = { "menu", "menuone", "noselect" }
 opt.conceallevel = 0 -- so that `` is visible in markdown files
 opt.fileencoding = "utf-8" -- the encoding written to a file
 opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
@@ -39,8 +41,8 @@ opt.ignorecase = true -- ignore case in search patterns
 opt.smartcase = true -- smart case
 opt.mouse = "a" -- allow the mouse to be used in neovim
 opt.pumheight = 10 -- pop up menu height
-opt.scrolloff = 0 -- minimal number of screen lines to keep above and below the cursor
-opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
+opt.scrolloff = 999 -- minimal number of screen lines to keep above and below the cursor
+opt.showmode = true -- Show mode, e.g. INSERT 
 opt.showtabline = 1 -- always show tabs
 opt.smartindent = true -- make indenting smarter again
 opt.splitbelow = true -- force all horizontal splits to go below current window
@@ -66,3 +68,42 @@ opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift 
 opt.wrap = true -- display lines as one long line
 opt.spell = false
 opt.spelllang = "en"
+opt.wildmode = "list:longest"
+
+-- STATUSLINE --
+opt.laststatus = 2
+opt.statusline = "%#CursorColumn# %t %#CursorLine#%m %=%#CursorColumn# %y %l:%c | %p%% "
+
+-- TABLINE --
+function tabline()
+    local i = 1
+    local line = ""
+    while i <= vim.fn.tabpagenr("$") do
+        -- Set highlight based on current tab
+        if i == vfn.tabpagenr() then
+          line = line .. "%#TabLineSel#"
+        else
+	        line = line .. "%#TabLine#"
+        end
+        -- Add a separator bar
+        if i ~= 1 then
+          line = line .. " |"
+        end
+        -- Set the file name
+        local buflist = vfn.tabpagebuflist(i)
+        local winnr = vfn.tabpagewinnr(i)
+        local file = vfn.pathshorten(vfn.fnamemodify(vfn.bufname(buflist[winnr]), ":p:~:t"))
+        -- line = line .. " " .. i .. " " .. file
+        line = string.format("%s %d %s", line, i, file)
+        i = i + 1
+    end
+	  -- After the last tab fill with TabLineFill and reset tab page nr
+	  line = line .. "%#TabLineFill#%T"
+
+	  -- Right align the label to close the current tab page
+    if vfn.tabpagenr("$") > 1 then
+        line = line .. "%=%#TabLine#%999Xclose"
+    end
+    return line
+end
+opt.tabline = "%!v:lua.tabline()"

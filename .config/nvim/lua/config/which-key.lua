@@ -57,13 +57,6 @@ local opts = {
 vim.api.nvim_set_keymap("n", "<Leader>h", ':let @/=""<CR>', { noremap = true, silent = true })
 
 -- explorer
-vim.api.nvim_set_keymap(
-  "n",
-  "<C-p>",
-  ":lua require'config.nvimtree'.toggle_tree()<CR>",
-  { noremap = true, silent = true }
-)
-
 vim.api.nvim_set_keymap("n", "<leader>f", ":Telescope find_files<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-_>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
