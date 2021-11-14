@@ -30,3 +30,8 @@ alias inflate='ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'
 # asdf
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+
+# fly
+export FLYCTL_INSTALL="/home/tom/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
