@@ -27,34 +27,44 @@ return require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
 
   use "airblade/vim-rooter"
-  use 'tpope/vim-dispatch'
-  use 'tpope/vim-eunuch'
+  use "tpope/vim-dispatch"
+  use "tpope/vim-eunuch"
   use "tpope/vim-commentary"
 
-  use 'sainnhe/everforest'
+  -- Theme
+  use "kyazdani42/nvim-web-devicons"
+  use "sainnhe/everforest"
+  use "andreypopp/vim-colors-plain"
 
-  use "neovim/nvim-lspconfig"
-  use "kabouzeid/nvim-lspinstall"
+  -- use "neovim/nvim-lspconfig"
+  -- use "kabouzeid/nvim-lspinstall"
   -- Telescope
   use { "nvim-lua/popup.nvim" }
   use { "nvim-lua/plenary.nvim" }
   use { "tjdevries/astronauta.nvim" }
   use {
     "tdfirth/telescope.nvim",
-    config = [[require('config.telescope')]],
+    config = [[require("config.telescope")]],
   }
-  use "nvim-telescope/telescope-fzy-native.nvim"
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {"nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   -- Autocomplete
-  use {
-    "hrsh7th/nvim-compe",
-    event = "InsertEnter",
-    config = function()
-      require("config.compe").config()
-    end,
-  }
+  -- use {
+  --   "hrsh7th/nvim-cmp",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("config.cmp").config()
+  --   end,
+  -- }
+  -- use { "hrsh7th/cmp-buffer" }
+  -- use { "hrsh7th/cmp-path" }
+
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter" }
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("config.treesitter").config()
+		end,
+  }
 
   -- Neoformat
   use {
@@ -65,14 +75,6 @@ return require("packer").startup(function(use)
     event = "BufRead",
   }
 
-  use {
-    "kyazdani42/nvim-tree.lua",
-    commit = "fd7f60e242205ea9efc9649101c81a07d5f458bb",
-    config = function()
-      require("config.nvimtree").config()
-    end,
-  }
-
   -- whichkey
   use {
     "folke/which-key.nvim",
@@ -80,32 +82,6 @@ return require("packer").startup(function(use)
       require "config.which-key"
     end,
     event = "BufWinEnter",
-  }
-  -- Color
-  use { "christianchiarulli/nvcode-color-schemes.vim", opt = true }
-
-  -- Icons
-  use { "kyazdani42/nvim-web-devicons" }
-
-  -- Status Line and Bufferline
-  -- use {
-  --   "glepnir/galaxyline.nvim",
-  --   config = function()
-  --     require "config.galaxyline"
-  --   end,
-  -- }
-  use {
-    'hoob3rt/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    config = function()
-      require('lualine').setup {
-        options = {
-          theme = 'auto',
-          section_separators = '',
-          component_separators = ''
-        }
-      }
-    end
   }
 
   -- LANGUAGE SPECIFIC GOES HERE
@@ -122,18 +98,9 @@ return require("packer").startup(function(use)
     "simrat39/rust-tools.nvim",
     disable = not O.lang.rust.rust_tools.active,
   }
-  use "Julian/lean.nvim"
 
-  -- Custom semantic text objects
   use {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    disable = not O.plugin.ts_textobjects.active,
-  }
-
-  -- Smart text objects
-  use {
-    "RRethy/nvim-treesitter-textsubjects",
-    disable = not O.plugin.ts_textsubjects.active,
+    "elixir-editors/vim-elixir"
   }
 
   for _, plugin in pairs(O.user_plugins) do
