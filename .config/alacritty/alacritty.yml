@@ -134,8 +134,8 @@ schemes:
       white: "#dfddc8"
 window:
   decorations: None
-# colors: *everforest_dark_hard
-colors: *everforest_light_hard
+colors: *everforest_dark_hard
+# colors: *everforest_light_hard
 env:
   WINIT_X11_SCALE_FACTOR: "1"
 font:

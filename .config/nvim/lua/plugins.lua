@@ -4,22 +4,25 @@ local fn = vim.fn
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+  execute("!git clone https://github.com/wbthomason/packer.nvim " ..
+            install_path)
   execute "packadd packer.nvim"
 end
 
 local packer_ok, packer = pcall(require, "packer")
-if not packer_ok then
-  return
-end
+if not packer_ok then return end
 
 packer.init {
-  git = { clone_timeout = 300 },
+  git = {
+    clone_timeout = 300
+  },
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "single" }
-    end,
-  },
+      return require("packer.util").float {
+        border = "single"
+      }
+    end
+  }
 }
 
 return require("packer").startup(function(use)
@@ -44,9 +47,12 @@ return require("packer").startup(function(use)
   use { "tjdevries/astronauta.nvim" }
   use {
     "tdfirth/telescope.nvim",
-    config = [[require("config.telescope")]],
+    config = [[require("config.telescope")]]
   }
-  use {"nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  use {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    run = "make"
+  }
   -- Autocomplete
   -- use {
   --   "hrsh7th/nvim-cmp",
@@ -61,49 +67,41 @@ return require("packer").startup(function(use)
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("config.treesitter").config()
-		end,
+    run = ":TSUpdate",
+    config = function() require("config.treesitter").config() end
   }
 
   -- Neoformat
   use {
     "sbdchd/neoformat",
-    config = function()
-      require "config.neoformat"
-    end,
-    event = "BufRead",
+    config = function() require "config.neoformat" end,
+    event = "BufRead"
   }
 
   -- whichkey
   use {
     "folke/which-key.nvim",
-    config = function()
-      require "config.which-key"
-    end,
-    event = "BufWinEnter",
+    config = function() require "config.which-key" end,
+    event = "BufWinEnter"
   }
 
   -- LANGUAGE SPECIFIC GOES HERE
   use {
     "lervag/vimtex",
     ft = "tex",
-    config = function()
-      require "config.vimtex"
-    end,
+    config = function() require "config.vimtex" end
   }
 
-  use "fatih/vim-go"
+  use {
+    "fatih/vim-go",
+    config = function() require "config.vim-go" end
+  }
   use {
     "simrat39/rust-tools.nvim",
-    disable = not O.lang.rust.rust_tools.active,
+    disable = not O.lang.rust.rust_tools.active
   }
 
-  use {
-    "elixir-editors/vim-elixir"
-  }
+  use { "elixir-editors/vim-elixir" }
 
-  for _, plugin in pairs(O.user_plugins) do
-    packer.use(plugin)
-  end
+  for _, plugin in pairs(O.user_plugins) do packer.use(plugin) end
 end)
