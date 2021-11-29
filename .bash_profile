@@ -16,3 +16,4 @@ if [ -f ~/.profilesecrets ]; then
 	. ~/.profilesecrets
 fi
 . "$HOME/.cargo/env"
+

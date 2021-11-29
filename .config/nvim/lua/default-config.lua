@@ -56,7 +56,7 @@ O = {
     },
     python = {
       linter = "",
-      isort = false,
+      isort = true,
       diagnostics = {
         virtual_text = { spacing = 0, prefix = "" },
         signs = true,
