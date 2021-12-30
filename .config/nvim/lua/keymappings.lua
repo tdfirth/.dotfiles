@@ -1,3 +1,8 @@
+-- Set leader
+vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
+vim.g.mapleader = " "
+
+-- Ctrl-C to escape
 vim.api.nvim_set_keymap("i", "<C-c>", "<ESC>", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-c>", "<ESC>", { silent = true })
 
@@ -6,6 +11,10 @@ vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { silent = true })
+
+-- Move nicely through wrapped lines
+vim.api.nvim_set_keymap("n", "j", "gj", { silent = true })
+vim.api.nvim_set_keymap("n", "k", "gk", { silent = true })
 
 -- Terminal window navigation
 vim.api.nvim_set_keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", { silent = true, noremap = true })
@@ -52,3 +61,33 @@ vim.api.nvim_set_keymap("n", "[q", ":cprev<CR>", { noremap = true, silent = true
 
 vim.cmd 'vnoremap p "0p'
 vim.cmd 'vnoremap P "0P'
+
+-- Close a buffer without closing the window
+vim.api.nvim_set_keymap("n", "<leader>d", ":bp<bar>sp<bar>bn<bar>bd<CR>", { noremap = true, silent = true })
+
+-- Search
+vim.api.nvim_set_keymap("n", "<leader>f", ":Telescope find_files<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-_>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<C-Space>", ':lua require("telescope.builtin").grep_string { search = vim.fn.expand("<cword>") }<CR>', { noremap = true, silent = true })
+
+function vim.get_visual_selection()
+  local _, line_start, col_start, _ = unpack(vim.fn.getpos("'<"))
+  local _, line_end, col_end, _ = unpack(vim.fn.getpos("'>"))
+  local lines = vim.fn.getline(line_start, line_end)
+  if vim.fn.len(lines) == 0 then
+    return ""
+  end
+  lines[1] = string.sub(lines[1], col_start)
+  local last = table.getn(lines)
+  lines[last] = string.sub(lines[last], 0, col_end)
+  return vim.fn.join(lines, "\n")
+end
+
+vim.api.nvim_set_keymap(
+  "v",
+  "<C-Space>",
+  ':lua require("telescope.builtin").grep_string { search = vim.get_visual_selection() }<CR>',
+  { noremap = true, silent = true }
+)

@@ -18,6 +18,7 @@ vim.g.everforest_sign_column_background = 'none'
 vim.g.everforest_better_performance = 1
 vim.g.everforest_background = 'hard'
 vim.g.colors_name = "everforest"
+-- vim.g.colors_name = "nordfox"
 -- vim.g.colors_name = "plain"
 
 ---  SETTINGS  ---

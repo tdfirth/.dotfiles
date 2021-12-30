@@ -34,6 +34,7 @@ return require("packer").startup(function(use)
   -- Theme
   use "kyazdani42/nvim-web-devicons"
   use "sainnhe/everforest"
+  use 'EdenEast/nightfox.nvim'
   use "andreypopp/vim-colors-plain"
 
   -- use "neovim/nvim-lspconfig"
@@ -73,15 +74,6 @@ return require("packer").startup(function(use)
       require "config.neoformat"
     end,
     event = "BufRead",
-  }
-
-  -- whichkey
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      require "config.which-key"
-    end,
-    event = "BufWinEnter",
   }
 
   -- LANGUAGE SPECIFIC GOES HERE
