@@ -17,7 +17,15 @@ vim.g.everforest_disable_italic_comment = 1
 vim.g.everforest_sign_column_background = 'none'
 vim.g.everforest_better_performance = 1
 vim.g.everforest_background = 'hard'
-vim.g.colors_name = "everforest"
+-- vim.g.colors_name = "everforest"
+vim.g.herdwick_disable_italic_comment = 1
+vim.g.herdwick_enable_italic = 1
+vim.g.herdwick_sign_column_background = 'none'
+vim.g.herdwick_better_performance = 1
+vim.g.herdwick_background = 'hard'
+vim.g.herdwick_show_eob = 1
+vim.g.herdwick_current_word = "grey background"
+vim.g.colors_name = "herdwick"
 -- vim.g.colors_name = "nordfox"
 -- vim.g.colors_name = "plain"
 
@@ -88,14 +96,14 @@ function tabline()
         end
         -- Add a separator bar
         if i ~= 1 then
-          line = line .. " |"
+          line = line .. "|"
         end
         -- Set the file name
         local buflist = vfn.tabpagebuflist(i)
         local winnr = vfn.tabpagewinnr(i)
         local file = vfn.pathshorten(vfn.fnamemodify(vfn.bufname(buflist[winnr]), ":p:~:t"))
         -- line = line .. " " .. i .. " " .. file
-        line = string.format("%s %d %s", line, i, file)
+        line = string.format("%s %d %s ", line, i, file)
         i = i + 1
     end
 	  -- After the last tab fill with TabLineFill and reset tab page nr

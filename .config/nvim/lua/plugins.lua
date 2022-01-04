@@ -48,16 +48,6 @@ return require("packer").startup(function(use)
     config = [[require("config.telescope")]],
   }
   use {"nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-  -- Autocomplete
-  -- use {
-  --   "hrsh7th/nvim-cmp",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("config.cmp").config()
-  --   end,
-  -- }
-  -- use { "hrsh7th/cmp-buffer" }
-  -- use { "hrsh7th/cmp-path" }
 
   -- Treesitter
   use {
