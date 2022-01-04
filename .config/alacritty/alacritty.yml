@@ -151,7 +151,7 @@ font:
   offset:
     x: 0
     y: 2
-  size: 11.0
+  size: 11.5
   use_thin_strokes: true
 key_bindings:
   - action: SpawnNewInstance
