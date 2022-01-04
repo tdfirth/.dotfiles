@@ -33,12 +33,8 @@ return require("packer").startup(function(use)
 
   -- Theme
   use "kyazdani42/nvim-web-devicons"
-  use "sainnhe/everforest"
-  use 'EdenEast/nightfox.nvim'
-  use "andreypopp/vim-colors-plain"
+  use "tdfirth/herdwick"
 
-  -- use "neovim/nvim-lspconfig"
-  -- use "kabouzeid/nvim-lspinstall"
   -- Telescope
   use { "nvim-lua/popup.nvim" }
   use { "nvim-lua/plenary.nvim" }
@@ -79,10 +75,6 @@ return require("packer").startup(function(use)
   use {
     "simrat39/rust-tools.nvim",
     disable = not O.lang.rust.rust_tools.active,
-  }
-
-  use {
-    "elixir-editors/vim-elixir"
   }
 
   for _, plugin in pairs(O.user_plugins) do

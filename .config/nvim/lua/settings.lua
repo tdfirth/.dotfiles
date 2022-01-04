@@ -13,21 +13,7 @@ cmd "set iskeyword+=-"
 cmd "set whichwrap+=<,>,[,],h,l"
 
 -- THEME --
-vim.g.everforest_disable_italic_comment = 1
-vim.g.everforest_sign_column_background = 'none'
-vim.g.everforest_better_performance = 1
-vim.g.everforest_background = 'hard'
--- vim.g.colors_name = "everforest"
-vim.g.herdwick_disable_italic_comment = 1
-vim.g.herdwick_enable_italic = 1
-vim.g.herdwick_sign_column_background = 'none'
-vim.g.herdwick_better_performance = 1
-vim.g.herdwick_background = 'hard'
-vim.g.herdwick_show_eob = 1
-vim.g.herdwick_current_word = "grey background"
 vim.g.colors_name = "herdwick"
--- vim.g.colors_name = "nordfox"
--- vim.g.colors_name = "plain"
 
 ---  SETTINGS  ---
 
