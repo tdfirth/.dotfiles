@@ -1,2 +1,2 @@
-vim.g.go_fmt_command = "golines"
-vim.g.go_fmt_options = { "golines" = "-m 128" }
+vim.g.go_fmt_command = "gofmt"
+vim.g.go_imports_autosave = 0

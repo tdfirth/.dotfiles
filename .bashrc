@@ -29,3 +29,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export RUSTY_V8_MIRROR=$HOME/.cache/rusty_v8
+
+export PNPM_HOME="/home/tom/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
