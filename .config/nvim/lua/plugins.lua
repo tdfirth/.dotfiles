@@ -32,13 +32,11 @@ return require("packer").startup(function(use)
   use "tpope/vim-commentary"
 
   -- Theme
-  use "kyazdani42/nvim-web-devicons"
   use "tdfirth/herdwick"
 
   -- Telescope
   use { "nvim-lua/popup.nvim" }
   use { "nvim-lua/plenary.nvim" }
-  use { "tjdevries/astronauta.nvim" }
   use {
     "tdfirth/telescope.nvim",
     config = [[require("config.telescope")]],

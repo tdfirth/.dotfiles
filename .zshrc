@@ -31,3 +31,25 @@ if [ -f '/Users/tom/.local/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tom/
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/tom/.local/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tom/.local/google-cloud-sdk/completion.zsh.inc'; fi
 
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/tom/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/tom/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/tom/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/tom/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

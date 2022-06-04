@@ -69,7 +69,6 @@ vim.api.nvim_set_keymap("n", "<leader>d", ":bp<bar>sp<bar>bn<bar>bd<CR>", { nore
 vim.api.nvim_set_keymap("n", "<leader>f", ":Telescope find_files<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-_>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
-
 vim.api.nvim_set_keymap("n", "<C-Space>", ':lua require("telescope.builtin").grep_string { search = vim.fn.expand("<cword>") }<CR>', { noremap = true, silent = true })
 
 function vim.get_visual_selection()

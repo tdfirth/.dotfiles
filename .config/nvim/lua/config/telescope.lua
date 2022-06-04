@@ -45,6 +45,8 @@ telescope.setup {
       ".git/.*",
       "node_modules/.*",
       "target/.*",
+      "deps/.*",
+      "_build/.*"
     },
 
     mappings = {
