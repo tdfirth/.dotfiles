@@ -54,7 +54,7 @@ opt.writebackup = false -- if a file is being edited by another program (or was 
 opt.expandtab = true -- convert tabs to spaces
 opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 opt.shortmess:append "c"
-opt.tabstop = 2 -- insert 4 spaces for a tab
+opt.tabstop = 2 -- insert 2 spaces for a tab
 opt.cursorline = true -- highlight the current line
 opt.number = true -- set numbered lines
 opt.relativenumber = false -- set relative numbered lines
