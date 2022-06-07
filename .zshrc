@@ -2,9 +2,10 @@
 fpath+=$HOME/.zsh/pure
 autoload -Uz compinit && compinit
 autoload -U promptinit; promptinit
-prompt pure
+#prompt pure
 
 # completions
+fpath+=/opt/homebrew/share/zsh/site-functions
 
 # terminal
 set -o emacs
@@ -18,7 +19,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 export VIRTUALENVWRAPPER_PYTHON=~/.pyenv/shims/python
 export WORKON_PROJECT_HOME=$HOME/.virtualenvs
-source $HOME/.local/bin/virtualenvwrapper.sh
+# source $HOME/.local/bin/virtualenvwrapper.sh
 
 # node
 export NVM_DIR="$HOME/.nvm"

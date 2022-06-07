@@ -38,7 +38,7 @@ return require("packer").startup(function(use)
   use { "nvim-lua/popup.nvim" }
   use { "nvim-lua/plenary.nvim" }
   use {
-    "tdfirth/telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     config = [[require("config.telescope")]],
   }
   use {"nvim-telescope/telescope-fzf-native.nvim", run = "make" }

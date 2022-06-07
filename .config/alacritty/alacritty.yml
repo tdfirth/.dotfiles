@@ -1,5 +1,27 @@
 # Define
 schemes:
+  herdwick_dark: &herdwick_dark
+    primary:
+      background: "#1f2933"
+      foreground: "#f5f7fa"
+    normal:
+      black: "#323f4b"
+      red: "#f5f7fa"
+      green: "#f5f7fa"
+      yellow: "#f5f7fa"
+      blue: "#f5f7fa"
+      magenta: "#f5f7fa"
+      cyan: "#f5f7fa"
+      white: "#f5f7fa"
+    bright:
+      black: "#3e4c59"
+      red: "#f5f7fa"
+      green: "#f5f7fa"
+      yellow: "#f5f7fa"
+      blue: "#f5f7fa"
+      magenta: "#f5f7fa"
+      cyan: "#f5f7fa"
+      white: "#c5c8c6"
   everforest_dark_hard: &everforest_dark_hard
     primary:
       background: '#2b3339'
@@ -134,7 +156,10 @@ schemes:
       white:   '#dfddc8'
 window:
   decorations: Buttonless
-colors: *everforest_dark_medium
+  padding:
+    x: 4
+    y: 4
+colors: *herdwick_dark
   # primary:
   #   background: "#fbf1c7"
   #   foreground: "#3c3836"
@@ -160,15 +185,15 @@ env:
   WINIT_X11_SCALE_FACTOR: "1"
 font:
   bold:
-    family: Inconsolata Nerd Font
+    family: Berkeley Mono Variable
   italic:
-    family: Inconsolata Nerd Font
+    family: Berkeley Mono Variable
   normal:
-    family: Inconsolata Nerd Font
+    family: Berkeley Mono Variable
   offset:
     x: 0
     y: 2
-  size: 15
+  size: 13
   use_thin_strokes: true
 key_bindings:
   - action: Paste

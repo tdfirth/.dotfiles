@@ -25,4 +25,4 @@ export FLYCTL_INSTALL="$HOME/.fly"
 
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"

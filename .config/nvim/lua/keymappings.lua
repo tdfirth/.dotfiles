@@ -15,6 +15,8 @@ vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { silent = true })
 -- Move nicely through wrapped lines
 vim.api.nvim_set_keymap("n", "j", "gj", { silent = true })
 vim.api.nvim_set_keymap("n", "k", "gk", { silent = true })
+vim.api.nvim_set_keymap("v", "j", "gj", { silent = true })
+vim.api.nvim_set_keymap("v", "k", "gk", { silent = true })
 
 -- Terminal window navigation
 vim.api.nvim_set_keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", { silent = true, noremap = true })

@@ -11,9 +11,7 @@ cmd('let &titleold="' .. TERMINAL .. '"')
 cmd "set inccommand=split"
 cmd "set iskeyword+=-"
 cmd "set whichwrap+=<,>,[,],h,l"
-
--- THEME --
-vim.g.colors_name = "herdwick"
+cmd "colorscheme herdwick"
 
 ---  SETTINGS  ---
 
