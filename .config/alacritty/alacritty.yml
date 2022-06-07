@@ -196,6 +196,9 @@ font:
   size: 13
   use_thin_strokes: true
 key_bindings:
+  - action: CreateNewWindow
+    key: N
+    mods: Command
   - action: Paste
     key: V
     mods: Control|Shift

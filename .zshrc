@@ -4,6 +4,8 @@ autoload -Uz compinit && compinit
 autoload -U promptinit; promptinit
 #prompt pure
 
+PROMPT="$ "
+
 # completions
 fpath+=/opt/homebrew/share/zsh/site-functions
 
