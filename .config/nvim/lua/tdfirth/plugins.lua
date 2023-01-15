@@ -38,14 +38,20 @@ packer.init({
 	},
 })
 
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
 return packer.startup(function(use)
 	-- Packer can manage itself as an optional plugin
 	use("wbthomason/packer.nvim")
+
+	-- Cache for lua
+	use("lewis6991/impatient.nvim")
+
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("tpope/vim-dispatch")
 	use("tpope/vim-eunuch")
-	use("tpope/vim-commentary")
+	use("tpope/vim-fugitive")
 
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("numToStr/Comment.nvim") -- Easily comment stuff
