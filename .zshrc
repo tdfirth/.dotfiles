@@ -60,4 +60,17 @@ if [ -f '/Users/tdfirth/.local/bin/google-cloud-sdk/completion.zsh.inc' ]; then 
 
 # Kubectl autocompletion
 source <(kubectl completion zsh)
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
+# opam configuration
+[[ ! -r /Users/tdfirth/.opam/opam-init/init.zsh ]] || source /Users/tdfirth/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# Zig
+export PATH="$HOME/.local/zig:$PATH"
+
+# bun completions
+[ -s "/Users/tdfirth/.bun/_bun" ] && source "/Users/tdfirth/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -8,7 +8,6 @@ local flake8 = {
 }
 
 local isort = { formatCommand = "isort --quiet -", formatStdin = true }
-
 local yapf = { formatCommand = "yapf --quiet", formatStdin = true }
 local black = { formatCommand = "black --quiet -", formatStdin = true }
 

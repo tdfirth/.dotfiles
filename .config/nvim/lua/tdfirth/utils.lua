@@ -1,7 +1,7 @@
 local utils = {}
 
 function utils.reload_lv_config()
-  vim.cmd "source ~/.config/nvim/settings.lua"
+  vim.cmd "source ~/.config/nvim/options.lua"
   vim.cmd "source ~/.config/nvim/lua/plugins.lua"
   vim.cmd "source ~/.config/nvim/lua/config/neoformat/init.lua"
   vim.cmd ":PackerCompile"
@@ -41,8 +41,6 @@ function utils.define_augroups(definitions) -- {{{1
 end
 
 utils.define_augroups {
-
-  _user_autocommands = O.user_autocommands,
   _general_settings = {
     {
       "TextYankPost",

@@ -196,6 +196,9 @@ font:
   size: 13
   use_thin_strokes: true
 key_bindings:
+  - chars: "\x1f"
+    key: Slash
+    mods: Control
   - action: CreateNewWindow
     key: N
     mods: Command
