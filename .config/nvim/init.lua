@@ -1,16 +1,16 @@
-CONFIG_PATH = vim.fn.stdpath "config"
-DATA_PATH = vim.fn.stdpath "data"
-CACHE_PATH = vim.fn.stdpath "cache"
-TERMINAL = vim.fn.expand "$TERMINAL"
+-- Load the utils first as it has a load of helper functions
+-- that are used everywhere else.
+require("tdfirth.utils")
 
-require "tdfirth.options"
-require "tdfirth.statusline"
-require "tdfirth.keymaps"
-require "tdfirth.plugins"
-require "tdfirth.colorscheme"
-require "tdfirth.utils"
-require "tdfirth.cmp"
-require "tdfirth.lsp"
-require "tdfirth.telescope"
-require "tdfirth.treesitter"
-require "tdfirth.autopairs"
+-- Load the colorscheme
+vim.cmd.colorscheme("tdfirth")
+
+require("tdfirth.options")
+require("tdfirth.statusline")
+require("tdfirth.keymaps")
+require("tdfirth.plugins")
+require("tdfirth.cmp")
+require("tdfirth.lsp")
+require("tdfirth.telescope")
+require("tdfirth.treesitter")
+require("tdfirth.autopairs")
