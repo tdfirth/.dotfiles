@@ -5,10 +5,6 @@ _G.CACHE_PATH = vim.fn.stdpath("cache")
 _G.TERMINAL = vim.fn.expand("$TERMINAL")
 _G.utils = {}
 
-function utils.reload_config()
-	vim.cmd("source $MYVIMRC")
-end
-
 --- Set vim options with a nested table like API with the format vim.<first_key>.<second_key>.<value>
 -- @param options the nested table of vim options
 function utils.vim_opts(options)

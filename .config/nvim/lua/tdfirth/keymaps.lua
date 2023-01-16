@@ -1,63 +1,84 @@
 local keymap = vim.api.nvim_set_keymap
 
--- Set leader
-keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
-vim.g.mapleader = " "
-
--- Ctrl-C to escape
-keymap("i", "<C-c>", "<ESC>", { silent = true })
-keymap("n", "<C-c>", "<ESC>", { silent = true })
-
--- better window movement
-keymap("n", "<C-h>", "<C-w>h", { silent = true })
-keymap("n", "<C-j>", "<C-w>j", { silent = true })
-keymap("n", "<C-k>", "<C-w>k", { silent = true })
-keymap("n", "<C-l>", "<C-w>l", { silent = true })
-
--- Move nicely through wrapped lines
-keymap("n", "j", "gj", { silent = true, noremap = true })
-keymap("n", "k", "gk", { silent = true, noremap = true })
-keymap("v", "j", "gj", { silent = true, noremap = true })
-keymap("v", "k", "gk", { silent = true, noremap = true })
-
--- Terminal window navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", { silent = true, noremap = true })
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", { silent = true, noremap = true })
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", { silent = true, noremap = true })
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", { silent = true, noremap = true })
-keymap("i", "<C-h>", "<C-\\><C-N><C-w>h", { silent = true, noremap = true })
-keymap("i", "<C-j>", "<C-\\><C-N><C-w>j", { silent = true, noremap = true })
-keymap("i", "<C-k>", "<C-\\><C-N><C-w>k", { silent = true, noremap = true })
-keymap("i", "<C-l>", "<C-\\><C-N><C-w>l", { silent = true, noremap = true })
-keymap("t", "<Esc>", "<C-\\><C-n>", { silent = true, noremap = true })
-
-if vim.fn.has("mac") == 1 then
-	keymap("n", "<A-Up>", ":resize -2<CR>", { silent = true })
-	keymap("n", "<A-Down>", ":resize +2<CR>", { silent = true })
-	keymap("n", "<A-Left>", ":vertical resize -2<CR>", { silent = true })
-	keymap("n", "<A-Right>", ":vertical resize +2<CR>", { silent = true })
-else
-	keymap("n", "<C-Up>", ":resize -2<CR>", { silent = true })
-	keymap("n", "<C-Down>", ":resize +2<CR>", { silent = true })
-	keymap("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
-	keymap("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
+local function leader(seq)
+	return "<leader>" .. seq
 end
 
--- better indenting
-keymap("v", "<", "<gv", { noremap = true, silent = true })
-keymap("v", ">", ">gv", { noremap = true, silent = true })
+local keymaps = {
+	i = {
+		ctrl = {},
+		shift = {},
+		alt = {},
+		leader = {},
+		g = {},
+		lit = {},
+	},
+	n = {
+		ctrl = {},
+		shift = {},
+		alt = {},
+		leader = {},
+		g = {},
+		lit = {},
+	},
+	v = {
+		ctrl = {},
+		leader = {},
+		g = {},
+		lit = {},
+	},
+	t = {
+		ctrl = {},
+		leader = {},
+		g = {},
+		lit = {},
+	},
+}
+
+-- Set the leader
+vim.g.mapleader = " "
+keymaps.n.lit["<Space>"] = { "<NOP>" }
+
+-- Ctrl-C to escape
+keymaps.n.ctrl["c"] = { "<ESC>", { silent = true } }
+keymaps.i.ctrl["c"] = { "<ESC>", { silent = true } }
+
+-- Better window movement
+keymaps.n.ctrl["h"] = { "<C-w>h", { silent = true } }
+keymaps.n.ctrl["j"] = { "<C-w>j", { silent = true } }
+keymaps.n.ctrl["k"] = { "<C-w>k", { silent = true } }
+keymaps.n.ctrl["l"] = { "<C-w>l", { silent = true } }
+
+-- Move nicely through wrapped lines
+keymaps.n.lit["j"] = { "gj" }
+keymaps.n.lit["k"] = { "gk" }
+keymaps.v.lit["j"] = { "gj" }
+keymaps.v.lit["k"] = { "gk" }
+
+-- Terminal window navigation
+keymaps.t.ctrl["h"] = { "<C-\\><C-N><C-w>h" }
+keymaps.t.ctrl["j"] = { "<C-\\><C-N><C-w>j" }
+keymaps.t.ctrl["k"] = { "<C-\\><C-N><C-w>k" }
+keymaps.t.ctrl["l"] = { "<C-\\><C-N><C-w>l" }
+keymaps.i.ctrl["h"] = { "<C-\\><C-N><C-w>h" }
+keymaps.i.ctrl["j"] = { "<C-\\><C-N><C-w>j" }
+keymaps.i.ctrl["k"] = { "<C-\\><C-N><C-w>k" }
+keymaps.i.ctrl["l"] = { "<C-\\><C-N><C-w>l" }
+keymaps.t.lit["<Esc>"] = { "<C-\\><C-n>" }
+
+-- Better indenting
+keymaps.v.lit["<"] = { "<gv" }
+keymaps.v.lit[">"] = { ">gv" }
 
 -- Tab switch buffer
-keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
-keymap("n", "<S-TAB>", ":bprevious<CR>", { noremap = true, silent = true })
+keymaps.n.shift["TAB"] = { ":bprevious<CR>" }
+keymaps.n.lit["<TAB>"] = { ":bnext<CR>" }
 
 -- Move current line / block with Alt-j/k ala vscode.
-keymap("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
-keymap("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
-keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
-keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
-keymap("x", "<A-j>", ":m '>+1<CR>gv-gv", { noremap = true, silent = true })
-keymap("x", "<A-k>", ":m '<-2<CR>gv-gv", { noremap = true, silent = true })
+keymaps.n.alt["j"] = { ":m .+1<CR>==" }
+keymaps.n.alt["k"] = { ":m .-2<CR>==" }
+keymaps.i.alt["j"] = { "<Esc>:m .+1<CR>==gi" }
+keymaps.i.alt["k"] = { "<Esc>:m .-2<CR>==gi" }
 
 -- QuickFix
 keymap("n", "]q", ":cnext<CR>", { noremap = true, silent = true })
@@ -67,10 +88,10 @@ vim.cmd('vnoremap p "0p')
 vim.cmd('vnoremap P "0P')
 
 -- Close a buffer without closing the window
-keymap("n", "<leader>d", ":bp<bar>sp<bar>bn<bar>bd<CR>", { noremap = true, silent = true })
+keymap("n", leader("d"), ":bp<bar>sp<bar>bn<bar>bd<CR>", { noremap = true, silent = true })
 
 -- Search
-keymap("n", "<leader>f", ":Telescope find_files<CR>", { noremap = true, silent = true })
+keymap("n", leader("f"), ":Telescope find_files<CR>", { noremap = true, silent = true })
 keymap("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
 keymap("n", "<C-/>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 keymap(
@@ -93,15 +114,45 @@ function vim.get_visual_selection()
 	return vim.fn.join(lines, "\n")
 end
 
-keymap(
-	"v",
-	"<C-Space>",
-	':lua require("telescope.builtin").grep_string { search = vim.get_visual_selection() }<CR>',
-	{ noremap = true, silent = true }
-)
+keymaps.v.ctrl["Space"] = {
+	function()
+		print("Grepping")
+		require("telescope.builtin").grep_string({ search = vim.get_visual_selection() })
+	end,
+	{ noremap = true, silent = true },
+}
 
---keymap("n", "<leader>cr", function()
---	print("Reloading config...")
---	require("tdfirth.utils").reload_config()
---end, { noremap = true, silent = true })
+vim.api.nvim_create_user_command("ReloadConfig", function()
+	print("Reloading vim config...")
+	vim.cmd("source $MYVIMRC")
+	print("Done.")
+end, {})
 
+local function make_binding(modifier, binding)
+	if modifier == "ctrl" then
+		return "<C-" .. binding .. ">"
+	elseif modifier == "shift" then
+		return "<S-" .. binding .. ">"
+	elseif modifier == "alt" then
+		return "<A-" .. binding .. ">"
+	elseif modifier == "leader" then
+		return "<leader>" .. binding
+	elseif modifier == "g" then
+		return "g" .. binding
+	else
+		return binding
+	end
+end
+
+for mode, mappings in pairs(keymaps) do
+	for modifier, bindings in pairs(mappings) do
+		for binding, def in pairs(bindings) do
+			local action = def[1]
+			local opts = def[2]
+			if opts == nil then
+				opts = { silent = true, noremap = true }
+			end
+			vim.keymap.set(mode, make_binding(modifier, binding), action, opts)
+		end
+	end
+end
