@@ -109,9 +109,8 @@ function vim.get_visual_selection()
 end
 
 vim.api.nvim_create_user_command("ReloadConfig", function()
-	print("Reloading vim config...")
+  print("Reloading config.")
 	vim.cmd("source $MYVIMRC")
-	print("Done.")
 end, {})
 
 local function make_binding(modifier, binding)
