@@ -6,7 +6,6 @@ require("tdfirth.utils")
 vim.cmd.colorscheme("tdfirth")
 
 require("tdfirth.options")
-require("tdfirth.statusline")
 require("tdfirth.keymaps")
 require("tdfirth.plugins")
 require("tdfirth.cmp")

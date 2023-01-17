@@ -61,6 +61,15 @@ return packer.startup(function(use)
 	})
 	use("moll/vim-bbye")
 
+	use({
+		"rebelot/heirline.nvim",
+		event = "UiEnter",
+		config = function()
+			local statusline = require("tdfirth.line")
+			require("heirline").setup(statusline)
+		end,
+	})
+
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
 	use("hrsh7th/cmp-buffer") -- buffer completions

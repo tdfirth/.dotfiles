@@ -22,7 +22,6 @@ local options = {
 	completeopt = { "menu", "menuone", "noselect" },
 	conceallevel = 0, -- so that `` is visible in markdown files
 	fileencoding = "utf-8", -- the encoding written to a file
-	guifont = "monospace:h17", -- the font used in graphical neovim applications
 	hidden = true, -- required to keep multiple buffers and open multiple buffers
 	hlsearch = false, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
@@ -56,6 +55,7 @@ local options = {
 	spell = false,
 	spelllang = "en",
 	wildmode = "list:longest",
+	laststatus = 3, -- One statusline for all splits
 }
 
 for k, v in pairs(options) do
