@@ -51,6 +51,19 @@ return packer.startup(function(use)
 	use("tpope/vim-dispatch")
 	use("tpope/vim-eunuch")
 	use("tpope/vim-fugitive")
+	use("tpope/vim-projectionist")
+
+	-- Copilot
+	use({
+		"github/copilot.vim",
+		config = function()
+			vim.g.copilot_no_tab_map = true
+			vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+		end,
+	})
+
+	-- Testing
+	use("vim-test/vim-test")
 
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use({
@@ -102,6 +115,10 @@ return packer.startup(function(use)
 		run = ":TSUpdate",
 	})
 	use("JoosepAlviste/nvim-ts-context-commentstring")
+
+	-- Writing
+	use("junegunn/goyo.vim")
+	use("junegunn/limelight.vim")
 
 	-- LANGUAGE SPECIFIC GOES HERE
 	use("fatih/vim-go")

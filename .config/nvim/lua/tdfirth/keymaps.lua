@@ -84,6 +84,11 @@ vim.cmd('vnoremap P "0P')
 -- Close a buffer without closing the window
 keymaps.n.leader["d"] = { ":bp<bar>sp<bar>bn<bar>bd<CR>" }
 
+-- Test
+keymaps.n.leader["tf"] = { ":TestFile<CR>" }
+keymaps.n.leader["tl"] = { ":TestLast<CR>" }
+keymaps.n.leader["tn"] = { ":TestNearest<CR>" }
+
 -- Search
 keymaps.n.leader["f"] = { ":Telescope find_files<CR>" }
 keymaps.n.ctrl["b"] = { ":Telescope buffers<CR>" }
@@ -109,8 +114,12 @@ function vim.get_visual_selection()
 end
 
 vim.api.nvim_create_user_command("ReloadConfig", function()
-  print("Reloading config.")
+	print("Reloading config.")
 	vim.cmd("source $MYVIMRC")
+end, {})
+
+vim.api.nvim_create_user_command("Writing", function()
+	vim.cmd("Goyo | Limelight!!")
 end, {})
 
 local function make_binding(modifier, binding)
