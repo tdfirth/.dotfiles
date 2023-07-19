@@ -45,6 +45,8 @@ telescope.setup {
       ".git/.*",
       "node_modules/.*",
       "target/.*",
+      "deps/.*",
+      "_build/.*"
     },
 
     mappings = {
@@ -76,5 +78,5 @@ telescope.setup {
   }
 }
 
-require('telescope').load_extension('fzf')
+telescope.load_extension('fzf')
 
