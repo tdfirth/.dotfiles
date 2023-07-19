@@ -16,9 +16,9 @@ export PATH=$HOME/go/bin:/usr/local/go/bin:$HOME/.opam/default/bin:$HOME/.cargo/
 export EDITOR=nvim
 
 # py
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-export WORKON_PROJECT_HOME=$HOME/.virtualenvs
-source $HOME/.local/bin/virtualenvwrapper.sh
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # ocaml
 test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
@@ -34,4 +34,3 @@ alias inflate='ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'
 # fly
 export FLYCTL_INSTALL="/home/tom/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
