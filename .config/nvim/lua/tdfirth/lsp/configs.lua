@@ -18,8 +18,8 @@ local servers = { "jsonls", "lua_ls", "rust_analyzer", "pyright", "tsserver", "s
 mason.setup()
 
 mason_lspconfig.setup({
-	ensure_installed = servers,
-	automatic_installation = true,
+	ensure_installed = {},
+	automatic_installation = false,
 })
 
 for _, server in pairs(servers) do

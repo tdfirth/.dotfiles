@@ -125,6 +125,7 @@ return packer.startup(function(use)
 	use({
 		"simrat39/rust-tools.nvim",
 	})
+	use("ziglang/zig.vim")
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
