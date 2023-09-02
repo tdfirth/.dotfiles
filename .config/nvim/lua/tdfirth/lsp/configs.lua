@@ -13,7 +13,7 @@ if not mason_lspconfig_installed then
 	return
 end
 
-local servers = { "jsonls", "lua_ls", "rust_analyzer", "pyright", "tsserver", "ocamllsp", "zls", "sqlls" }
+local servers = { "jsonls", "lua_ls", "rust_analyzer", "pyright", "tsserver", "sqlls", "zls" }
 
 mason.setup()
 
