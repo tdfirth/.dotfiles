@@ -6,8 +6,6 @@ local flake8 = {
   lintStdin = true,
   lintFormats = { "%f:%l:%c: %m" },
 }
-
 local isort = { formatCommand = "isort --quiet -", formatStdin = true }
 local yapf = { formatCommand = "yapf --quiet", formatStdin = true }
 local black = { formatCommand = "black --quiet -", formatStdin = true }
-
