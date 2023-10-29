@@ -3,7 +3,19 @@ plugins=(asdf)
 
 PROMPT="$ "
 
+background () {
+    echo $(cat ~/.config/kitty/current-theme.conf | grep -E -m1 '(light|dark)' | sed 's/## name: zenwritten_//');
+}
+
+# Neovim sets background after the first render, and it defaults to dark... so
+# it's quite jarring when you open nvim in light mode and it's dark for a split
+# second before it goes light.
+nvim_with_explicit_background () {
+    nvim --cmd "set background=$(background)"
+}
+
 alias sudo="sudo "
+alias nvim="nvim_with_explicit_background"
 alias vim="nvim"
 alias light="kitten themes --reload-in=all zenwritten_light"
 alias dark="kitten themes --reload-in=all zenwritten_dark"
@@ -15,7 +27,18 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # User specific environment and startup programs
 export EDITOR=nvim
 
-export PATH=/opt/homebrew/opt/libpq/bin:$HOME/go/bin:/usr/local/go/bin:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/MacGPG2/bin:
+export PATH=/opt/homebrew/opt/libpq/bin:\
+$HOME/go/bin:\
+/usr/local/go/bin:\
+$HOME/.cargo/bin:\
+$HOME/.local/bin:\
+/usr/local/MacGPG2/bin:\
+/usr/local/bin:\
+/usr/bin:\
+/bin:\
+/usr/sbin:\
+/sbin:\
+/usr/local/sbin
 
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -61,4 +84,8 @@ export PATH="$HOME/.local/zig:$PATH"
 # clojure
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
-alias sdkman="unalias sdkman; source "$HOME/.sdkman/bin/sdkman-init.sh"; sdkman $@"
+sdk() {
+    unset -f sdk
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdkman "$@"
+}
