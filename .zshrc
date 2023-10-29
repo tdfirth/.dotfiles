@@ -1,3 +1,4 @@
+clear
 plugins=(asdf)
 
 PROMPT="$ "
