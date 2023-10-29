@@ -11,12 +11,12 @@ background () {
 # it's quite jarring when you open nvim in light mode and it's dark for a split
 # second before it goes light.
 nvim_with_explicit_background () {
-    nvim --cmd "set background=$(background)"
+    nvim --cmd "set background=$(background)" "$@"
 }
 
 alias sudo="sudo "
 alias nvim="nvim_with_explicit_background"
-alias vim="nvim"
+alias vim="nvim "
 alias light="kitten themes --reload-in=all zenwritten_light"
 alias dark="kitten themes --reload-in=all zenwritten_dark"
 set -o emacs
