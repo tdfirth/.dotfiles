@@ -82,5 +82,17 @@ return packer.startup(function(use)
   -- LANGUAGE SPECIFIC GOES HERE
   use("ziglang/zig.vim")
 
+  -- Clojure
   use("eraserhd/parinfer-rust")
+  use({
+    "Olical/conjure",
+    ft = { "clojure", "fennel", "lisp", "scheme" },
+    setup = function()
+      vim.filetype.add({
+        pattern = {
+          [".*conjure%-log%-%d*%.cljc"] = "conjure-log",
+        },
+      })
+    end,
+  })
 end)
