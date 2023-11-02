@@ -17,7 +17,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+space exec "rofi -combi-modi window,run,ssh -theme toms-theme -display-combi '' -show combi"
-bindsym $mod+space exec "rofi -theme toms-theme -show drun"
+bindsym $mod+space exec "rofi -theme rounded-gray-dark -show drun"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that

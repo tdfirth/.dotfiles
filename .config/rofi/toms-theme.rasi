@@ -164,7 +164,7 @@ configuration {
    blackselect:      #303030;
    darkgray:         #848484;
    scrollbarcolor:   #505050;
-   font: "Hack NF 11";
+   font: "Berkeley Mono Variable 11";
    background-color: @blackdarkest;
 }
 

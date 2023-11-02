@@ -208,6 +208,7 @@ function output() {
 
     # Uses custom sink icon if the array contains one
     sinksLen=${#CUSTOM_SINK_ICONS[@]}
+    echo $sinksLen
     if [ "$activeSink" -le "$((sinksLen - 1))" ]; then
         sinkIcon=${CUSTOM_SINK_ICONS[$activeSink]}
     else
