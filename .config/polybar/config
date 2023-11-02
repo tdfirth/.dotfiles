@@ -146,11 +146,11 @@ type = custom/script
 tail = true
 label=%output%
 
-exec = ~/.config/polybar/pulseaudio-control.sh --listen
+exec = ~/.config/polybar/pipewire-simple.sh
 click-right = exec pavucontrol &
-click-left = ~/.config/polybar/pulseaudio-control.sh --togmute
-scroll-up = ~/.config/polybar/pulseaudio-control.sh --up
-scroll-down = ~/.config/polybar/pulseaudio-control.sh --down
+click-left = ~/.config/polybar/pipewire-simple.sh --mute
+scroll-up = ~/.config/polybar/pipewire-simple.sh --up
+scroll-down = ~/.config/polybar/pipewire-simple.sh --down
 
 label-foreground = ${colors.top-foreground}
 label-font = 1
