@@ -31,6 +31,7 @@ local keymaps = {
 
 -- Set the leader
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 keymaps.n._["<Space>"] = { "<NOP>" }
 
 -- Ctrl-C to escape
@@ -102,19 +103,6 @@ keymaps.n._["gd"] = { ":Telescope lsp_definitions<CR>" }
 keymaps.n._["gr"] = { ":Telescope lsp_references<CR>" }
 keymaps.n.leader["ld"] = { ":Telescope diagnostics<CR>" }
 keymaps.n.leader["ls"] = { ":Telescope lsp_workspace_symbols<CR>" }
-
-function vim.get_visual_selection()
-  local _, line_start, col_start, _ = unpack(vim.fn.getpos("'<"))
-  local _, line_end, col_end, _ = unpack(vim.fn.getpos("'>"))
-  local lines = vim.fn.getline(line_start, line_end)
-  if vim.fn.len(lines) == 0 then
-    return ""
-  end
-  lines[1] = string.sub(lines[1], col_start)
-  local last = table.getn(lines)
-  lines[last] = string.sub(lines[last], 0, col_end)
-  return vim.fn.join(lines, "\n")
-end
 
 local function make_binding(modifier, binding)
   if modifier == "ctrl" then

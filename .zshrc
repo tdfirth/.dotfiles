@@ -81,11 +81,12 @@ fi
 # Zig
 export PATH="$HOME/.local/zig:$PATH"
 
+# mojo
+export MODULAR_HOME="$HOME/.modular"
+export PATH="$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH"
+
 # clojure
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
-sdk() {
-    unset -f sdk
-    source "$HOME/.sdkman/bin/sdkman-init.sh"
-    sdkman "$@"
-}
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
