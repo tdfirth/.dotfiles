@@ -11,18 +11,51 @@ require("mason-lspconfig").setup({
 })
 
 local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 cmp.setup({
-  sources = {
-    { name = "nvim_lsp" },
+  snippet = {
+    expand = function(args)
+      -- require("luasnip").lsp_expand(args.body)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
   },
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    -- { name = "luasnip" },
+    { name = "vsnip" },
+  }, {
+    { name = "path" },
+    { name = "buffer" },
+  }),
   mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-    ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-p>"] = cmp.mapping.select_prev_item({
+      behavior = cmp.SelectBehavior.Select,
+    }),
+    ["<C-n>"] = cmp.mapping.select_next_item({
+      behavior = cmp.SelectBehavior.Select,
+    }),
+    ["<C-e>"] = cmp.mapping.abort(),
+    -- Accept currently selected item.
+    -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<Tab>"] = nil,
-    ["<S-Tab>"] = nil,
+    -- Snippets
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if vim.fn["vsnip#available"](1) == 1 then
+        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if vim.fn["vsnip#jumpable"](-1) == 1 then
+        feedkey("<Plug>(vsnip-jump-prev)", "")
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
   },
   window = {
     documentation = {

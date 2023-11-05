@@ -65,10 +65,6 @@ keymaps.t._["<Esc>"] = { "<C-\\><C-n>" }
 keymaps.v._["<"] = { "<gv" }
 keymaps.v._[">"] = { ">gv" }
 
--- Tab switch buffer
-keymaps.n.shift["TAB"] = { ":bprevious<CR>" }
-keymaps.n._["<TAB>"] = { ":bnext<CR>" }
-
 -- Move current line / block with Alt-j/k ala vscode.
 keymaps.n.alt["j"] = { ":m .+1<CR>==" }
 keymaps.n.alt["k"] = { ":m .-2<CR>==" }
