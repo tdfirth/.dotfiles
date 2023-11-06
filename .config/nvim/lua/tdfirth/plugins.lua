@@ -71,7 +71,12 @@ return packer.startup(function(use)
   use("vim-test/vim-test")
   use("mbbill/undotree")
   use("sbdchd/neoformat")
-  use("windwp/nvim-autopairs")
+  use({
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  })
 
   -- Theme
   use({
