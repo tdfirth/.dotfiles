@@ -4,7 +4,6 @@ if not packer_ok then
 end
 
 return packer.startup(function(use)
-  -- Packer can manage itself as an optional plugin
   use("wbthomason/packer.nvim")
 
   -- Status Line
@@ -12,7 +11,11 @@ return packer.startup(function(use)
     "nvim-lualine/lualine.nvim",
     config = function()
       require("lualine").setup({
-        options = { icons_enabled = false, section_separators = "", component_separators = "" },
+        options = {
+          icons_enabled = false,
+          section_separators = "",
+          component_separators = "",
+        },
       })
     end,
   })
@@ -49,6 +52,9 @@ return packer.startup(function(use)
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
+
+      -- Snippets
+      { "L3MON4D3/LuaSnip" },
     },
   })
 
@@ -61,38 +67,26 @@ return packer.startup(function(use)
   use("vim-test/vim-test")
   use("mbbill/undotree")
   use("sbdchd/neoformat")
+  use({
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  })
 
+  -- Theme
   use({
     "mcchrish/zenbones.nvim",
-    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
-    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
-    -- In Vim, compat mode is turned on as Lush only works in Neovim.
     requires = "rktjmp/lush.nvim",
   })
 
   -- Copilot
-  use({
-    "github/copilot.vim",
-    config = function()
-      -- vim.g.copilot_no_tab_map = true
-      -- vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-    end,
-  })
+  use("github/copilot.vim")
 
-  -- LANGUAGE SPECIFIC GOES HERE
+  -- Zig
   use("ziglang/zig.vim")
 
   -- Clojure
   use("eraserhd/parinfer-rust")
-  use({
-    "Olical/conjure",
-    ft = { "clojure", "fennel", "lisp", "scheme" },
-    setup = function()
-      vim.filetype.add({
-        pattern = {
-          [".*conjure%-log%-%d*%.cljc"] = "conjure-log",
-        },
-      })
-    end,
-  })
+  use("Olical/conjure")
 end)

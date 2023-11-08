@@ -11,18 +11,33 @@ require("mason-lspconfig").setup({
 })
 
 local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
 cmp.setup({
-  sources = {
+  sources = cmp.config.sources({
     { name = "nvim_lsp" },
-  },
+  }, {
+    { name = "path" },
+    { name = "buffer" },
+  }),
   mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-    ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-p>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+      else
+        cmp.complete()
+      end
+    end),
+    ["<C-n>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+      else
+        cmp.complete()
+      end
+    end),
+    ["<C-e>"] = cmp.mapping.abort(),
+    -- Accept currently selected item.
+    -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<Tab>"] = nil,
-    ["<S-Tab>"] = nil,
   },
   window = {
     documentation = {
