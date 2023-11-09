@@ -11,33 +11,61 @@ require("mason-lspconfig").setup({
 })
 
 local cmp = require("cmp")
+local luasnip = require("luasnip")
+local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-  }, {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  sources = {
     { name = "path" },
-    { name = "buffer" },
-  }),
+    { name = "nvim_lsp", keyword_length = 1 },
+    { name = "buffer",   keyword_length = 3 },
+    { name = "luasnip",  keyword_length = 2 },
+  },
+  formatting = {
+    fields = { "menu", "abbr", "kind" },
+    format = function(entry, item)
+      local menu_icon = {
+        nvim_lsp = "λ",
+        luasnip = "⋗",
+        buffer = "Ω",
+        path = "🖫",
+      }
+
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end,
+  },
   mapping = {
-    ["<C-p>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-      else
-        cmp.complete()
-      end
-    end),
-    ["<C-n>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-      else
-        cmp.complete()
-      end
-    end),
+    ["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
+    ["<C-n>"] = cmp.mapping.select_next_item(select_opts),
+
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+
     ["<C-e>"] = cmp.mapping.abort(),
-    -- Accept currently selected item.
-    -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+
+    ["Tab"] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["S-Tab"] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
   },
   window = {
     documentation = {
