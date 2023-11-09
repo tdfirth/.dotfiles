@@ -62,6 +62,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export HUSKY=0
 export PNPM_HOME="/Users/tdfirth/Library/pnpm"
 PATH="$PNPM_HOME:$PATH"
+alias pnx="pnpm exec nx "
 # pnpm end
 
 # Kubectl autocompletion
