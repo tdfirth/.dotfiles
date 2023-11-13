@@ -23,6 +23,7 @@ alias xclip="xclip -selection c"
 # .dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+#export PATH=$HOME/.local/kitty.app/bin:\
 export PATH=$HOME/go/bin:\
 /usr/local/go/bin:\
 $HOME/.cargo/bin:\
@@ -41,6 +42,7 @@ $HOME/.local/bin:\
 # asdf
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+export HUSKY=0
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/tom/.sdkman"
@@ -49,3 +51,9 @@ export SDKMAN_DIR="/home/tom/.sdkman"
 export PNPM_HOME="/home/tom/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 alias pnx="pnpm exec nx "
+
+# gcloud
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/tom/downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/tom/downloads/google-cloud-sdk/path.bash.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/tom/downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/tom/downloads/google-cloud-sdk/completion.bash.inc'; fi
