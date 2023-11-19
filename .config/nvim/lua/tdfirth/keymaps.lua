@@ -27,6 +27,14 @@ local keymaps = {
     g = {},
     _ = {},
   },
+  x = {
+    ctrl = {},
+    shift = {},
+    alt = {},
+    leader = {},
+    g = {},
+    _ = {},
+  },
 }
 
 -- Set the leader
@@ -37,6 +45,9 @@ keymaps.n._["<Space>"] = { "<NOP>" }
 -- Ctrl-C to escape
 keymaps.n.ctrl["c"] = { "<ESC>", { silent = true } }
 keymaps.i.ctrl["c"] = { "<ESC>", { silent = true } }
+keymaps.x.ctrl["c"] = { "<ESC>", { silent = true } }
+keymaps.v.ctrl["c"] = { "<ESC>", { silent = true } }
+keymaps.t.ctrl["c"] = { "<ESC>", { silent = true } }
 
 -- Better window movement
 keymaps.n.ctrl["h"] = { "<C-w>h", { silent = true } }
@@ -87,10 +98,10 @@ keymaps.n.leader["tl"] = { ":TestLast<CR>" }
 keymaps.n.leader["tn"] = { ":TestNearest<CR>" }
 
 -- Netrw
-keymaps.n.ctrl["p"] = { ":Lexplore<CR>" }
+keymaps.n.ctrl["p"] = { ":Vexplore<CR>" }
 
 -- Search
-keymaps.n._["<esc>"] = { ":noh<CR>" }
+keymaps.n._["<CR>"] = { ":noh<CR>" }
 keymaps.n.ctrl["/"] = { ":Telescope live_grep<CR>" }
 keymaps.n.leader["ff"] = { ":Telescope find_files<CR>" }
 keymaps.n.leader["fs"] = { ":Telescope grep_string<CR>" }
