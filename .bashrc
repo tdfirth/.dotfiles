@@ -57,3 +57,7 @@ alias pnx="pnpm exec nx "
 if [ -f '/home/tom/.local/google-cloud-sdk/path.bash.inc' ]; then . '/home/tom/.local/google-cloud-sdk/path.bash.inc'; fi
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/tom/.local/google-cloud-sdk/completion.bash.inc' ]; then . '/home/tom/.local/google-cloud-sdk/completion.bash.inc'; fi
+
+# kubectl
+source /usr/share/bash-completion/bash_completion
+source <(kubectl completion bash)
