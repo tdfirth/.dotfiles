@@ -6,10 +6,11 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family      Berkeley Mono Variable
-bold_font        Berkeley Mono Variable Bold
-italic_font      Berkeley Mono Variable Italic
-bold_italic_font Berkeley Mono Variable Bold Italic
+font_family      JetBrains Mono
+# font_family      Berkeley Mono Variable
+# bold_font        Berkeley Mono Variable Bold
+# italic_font      Berkeley Mono Variable Italic
+# bold_italic_font Berkeley Mono Variable Bold Italic
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
