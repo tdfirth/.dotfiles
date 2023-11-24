@@ -61,3 +61,12 @@ if [ -f '/home/tom/.local/google-cloud-sdk/completion.bash.inc' ]; then . '/home
 # kubectl
 source /usr/share/bash-completion/bash_completion
 source <(kubectl completion bash)
+
+# >>> conda initialize >>>
+if [ -f "/home/tom/miniconda3/etc/profile.d/conda.sh" ]; then
+    . "/home/tom/miniconda3/etc/profile.d/conda.sh"
+else
+    export PATH="/home/tom/miniconda3/bin:$PATH"
+fi
+# <<< conda initialize <<<
+
