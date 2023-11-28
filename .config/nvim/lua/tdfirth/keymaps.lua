@@ -5,7 +5,7 @@ local keymaps = {
     alt = {},
     leader = {},
     g = {},
-    _ = {},
+    _ = {}
   },
   n = {
     ctrl = {},
@@ -13,19 +13,19 @@ local keymaps = {
     alt = {},
     leader = {},
     g = {},
-    _ = {},
+    _ = {}
   },
   v = {
     ctrl = {},
     leader = {},
     g = {},
-    _ = {},
+    _ = {}
   },
   t = {
     ctrl = {},
     leader = {},
     g = {},
-    _ = {},
+    _ = {}
   },
   x = {
     ctrl = {},
@@ -33,8 +33,8 @@ local keymaps = {
     alt = {},
     leader = {},
     g = {},
-    _ = {},
-  },
+    _ = {}
+  }
 }
 
 -- Set the leader
@@ -43,17 +43,53 @@ vim.g.maplocalleader = ","
 keymaps.n._["<Space>"] = { "<NOP>" }
 
 -- Ctrl-C to escape
-keymaps.n.ctrl["c"] = { "<ESC>", { silent = true } }
-keymaps.i.ctrl["c"] = { "<ESC>", { silent = true } }
-keymaps.x.ctrl["c"] = { "<ESC>", { silent = true } }
-keymaps.v.ctrl["c"] = { "<ESC>", { silent = true } }
-keymaps.t.ctrl["c"] = { "<ESC>", { silent = true } }
+keymaps.n.ctrl["c"] = {
+  "<ESC>", {
+  silent = true
+}
+}
+keymaps.i.ctrl["c"] = {
+  "<ESC>", {
+  silent = true
+}
+}
+keymaps.x.ctrl["c"] = {
+  "<ESC>", {
+  silent = true
+}
+}
+keymaps.v.ctrl["c"] = {
+  "<ESC>", {
+  silent = true
+}
+}
+keymaps.t.ctrl["c"] = {
+  "<ESC>", {
+  silent = true
+}
+}
 
 -- Better window movement
-keymaps.n.ctrl["h"] = { "<C-w>h", { silent = true } }
-keymaps.n.ctrl["j"] = { "<C-w>j", { silent = true } }
-keymaps.n.ctrl["k"] = { "<C-w>k", { silent = true } }
-keymaps.n.ctrl["l"] = { "<C-w>l", { silent = true } }
+keymaps.n.ctrl["h"] = {
+  "<C-w>h", {
+  silent = true
+}
+}
+keymaps.n.ctrl["j"] = {
+  "<C-w>j", {
+  silent = true
+}
+}
+keymaps.n.ctrl["k"] = {
+  "<C-w>k", {
+  silent = true
+}
+}
+keymaps.n.ctrl["l"] = {
+  "<C-w>l", {
+  silent = true
+}
+}
 
 -- Move nicely through wrapped lines
 keymaps.n._["j"] = { "gj" }
@@ -97,11 +133,14 @@ keymaps.n.leader["tf"] = { ":TestFile<CR>" }
 keymaps.n.leader["tl"] = { ":TestLast<CR>" }
 keymaps.n.leader["tn"] = { ":TestNearest<CR>" }
 
--- Netrw
-keymaps.n.ctrl["p"] = { ":Explore<CR>" }
+-- File Browser
+keymaps.n.leader["fp"] = { ":Telescope file_browser<CR>" }
+keymaps.n.ctrl["p"] = {
+  ":Telescope file_browser path=%:p:h select_buffer=true<CR>"
+}
 
 -- Search
-keymaps.n._["<CR>"] = { ":noh<CR>" }
+keymaps.n.ctrl["CR"] = { ":noh<CR>" }
 keymaps.n.ctrl["/"] = { ":Telescope live_grep<CR>" }
 keymaps.n.leader["ff"] = { ":Telescope find_files<CR>" }
 keymaps.n.leader["fs"] = { ":Telescope grep_string<CR>" }
@@ -133,7 +172,10 @@ for mode, mappings in pairs(keymaps) do
       local action = def[1]
       local opts = def[2]
       if opts == nil then
-        opts = { silent = true, noremap = true }
+        opts = {
+          silent = true,
+          noremap = true
+        }
       end
       vim.keymap.set(mode, make_binding(modifier, binding), action, opts)
     end
