@@ -29,7 +29,7 @@ telescope.setup({
 
     file_ignore_patterns = {
       ".git/.*", "node_modules/.*", "target/.*", "deps/.*", "_build/.*",
-      "zig%-out/.*", "zig%-cache/.*", "*.svg"
+      "zig%-out/.*", "zig%-cache/.*", "*.svg", "assets/.*"
     },
 
     mappings = {
