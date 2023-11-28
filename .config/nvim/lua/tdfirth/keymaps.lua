@@ -98,7 +98,7 @@ keymaps.n.leader["tl"] = { ":TestLast<CR>" }
 keymaps.n.leader["tn"] = { ":TestNearest<CR>" }
 
 -- Netrw
-keymaps.n.ctrl["p"] = { ":Vexplore<CR>" }
+keymaps.n.ctrl["p"] = { ":Explore<CR>" }
 
 -- Search
 keymaps.n._["<CR>"] = { ":noh<CR>" }
