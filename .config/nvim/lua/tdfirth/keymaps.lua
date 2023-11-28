@@ -133,8 +133,11 @@ keymaps.n.leader["tf"] = { ":TestFile<CR>" }
 keymaps.n.leader["tl"] = { ":TestLast<CR>" }
 keymaps.n.leader["tn"] = { ":TestNearest<CR>" }
 
--- Netrw
-keymaps.n.ctrl["p"] = { ":Explore<CR>" }
+-- File Browser
+keymaps.n.leader["fp"] = { ":Telescope file_browser<CR>" }
+keymaps.n.ctrl["p"] = {
+  ":Telescope file_browser path=%:p:h select_buffer=true<CR>"
+}
 
 -- Search
 keymaps.n.ctrl["CR"] = { ":noh<CR>" }
