@@ -41,10 +41,27 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{ import = "plugins" },
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
 	},
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = {
+					keymap = {
+						accept = "<C-h>",
+						next = "<C-j>",
+						prev = "<C-k>",
+						dismiss = "<C-l>",
+					},
+				},
+			})
+		end,
+	},
+	{ import = "plugins" },
 })
