@@ -1,4 +1,4 @@
 require("tdfirth.options")
-require("tdfirth.plugins")
+require("tdfirth.lazy")
 require("tdfirth.keymaps")
 require("tdfirth.utils")
