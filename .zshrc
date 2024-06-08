@@ -49,7 +49,7 @@ nvim_with_explicit_background () {
 }
 
 alias sudo="sudo "
-#alias nvim="nvim_with_explicit_background"
+alias nvim="nvim_with_explicit_background"
 alias light="kitten themes --reload-in=all zenwritten_light"
 alias dark="kitten themes --reload-in=all zenwritten_dark"
 set -o emacs

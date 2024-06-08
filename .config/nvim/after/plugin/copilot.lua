@@ -1,7 +1,0 @@
--- vim.keymap.set("i", "<C-H>", function()
--- 	require("cmp").abort()
--- 	vim.cmd("call copilot#Suggest()")
--- end, { silent = true })
-vim.api.nvim_set_keymap("i", "<C-J>", "copilot#Next()", { silent = true, expr = true })
-vim.api.nvim_set_keymap("i", "<C-K>", "copilot#Previous()", { silent = true, expr = true })
-vim.api.nvim_set_keymap("i", "<C-H>", 'copilot#Accept("<CR>")', { silent = true, expr = true })

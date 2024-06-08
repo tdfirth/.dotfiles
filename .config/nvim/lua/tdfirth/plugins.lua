@@ -1,90 +1,50 @@
-local packer_ok, packer = pcall(require, "packer")
-if not packer_ok then
-  return
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
+vim.opt.rtp:prepend(lazypath)
 
-return packer.startup(function(use)
-  use("wbthomason/packer.nvim")
-
-  -- Status Line
-  use({
-    "nvim-lualine/lualine.nvim",
-    config = function()
-      require("lualine").setup({
-        options = {
-          icons_enabled = false,
-          section_separators = "",
-          component_separators = "",
-        },
-      })
-    end,
-  })
-
-  -- Telescope
-  use({
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.4",
-    requires = {
-      { "nvim-lua/plenary.nvim" },
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        run = "make",
-      },
-    },
-  })
-  use({
-    "nvim-telescope/telescope-file-browser.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  })
-
-  -- Treesitter
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  })
-
-  -- LSP
-  use({
-    "VonHeikemen/lsp-zero.nvim",
-    branch = "v3.x",
-    requires = {
-      -- LSP Support
-      { "neovim/nvim-lspconfig" },
-      { "williamboman/mason.nvim" },
-      { "williamboman/mason-lspconfig.nvim" }, -- Autocompletion
-      { "hrsh7th/nvim-cmp" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-nvim-lua" }, -- Snippets
-      { "L3MON4D3/LuaSnip" },
-    },
-  })
-
-  -- Misc
-  use("tpope/vim-dispatch")
-  use("tpope/vim-eunuch")
-  use("tpope/vim-projectionist")
-  use("tpope/vim-surround")
-  use("vim-test/vim-test")
-  use("mbbill/undotree")
-  use("sbdchd/neoformat")
-  use({
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup({})
-    end,
-  })
-
-  -- Theme
-  use({
-    "mcchrish/zenbones.nvim",
-    requires = "rktjmp/lush.nvim",
-  })
-
-  -- Copilot
-  use("github/copilot.vim")
-
-  -- Zig
-  use("ziglang/zig.vim")
-end)
+require("lazy").setup({
+	"tpope/vim-dispatch",
+	"tpope/vim-eunuch",
+	"tpope/vim-projectionist",
+	"tpope/vim-surround",
+	"vim-test/vim-test",
+	"mbbill/undotree",
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+	},
+	{
+		"mcchrish/zenbones.nvim",
+		priority = 1000,
+		dependencies = {
+			"rktjmp/lush.nvim",
+		},
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		config = function()
+			require("lualine").setup({
+				options = {
+					icons_enabled = false,
+					section_separators = "",
+					component_separators = "",
+				},
+			})
+		end,
+	},
+	{ import = "plugins" },
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+	},
+})
