@@ -49,10 +49,9 @@ map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", silent_noremap)
 map("n", "<leader>d", ":bp<bar>sp<bar>bn<bar>bd<CR>", silent_noremap)
 
 -- Search
+map("n", "*", "*N", silent_noremap)
+map("n", "#", "#N", silent_noremap)
 map("n", "<C-CR>", ":noh<CR>", silent_noremap)
-
--- Oil
-map("n", "<C-p>", "<CMD>Oil<CR>", silent_noremap)
 
 vim.cmd('vnoremap p "0p')
 vim.cmd('vnoremap P "0P')
