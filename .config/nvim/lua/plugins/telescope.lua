@@ -35,7 +35,6 @@ return {
 					preview = { " " },
 				},
 
-				wrap_results = true,
 				selection_strategy = "reset",
 				sorting_strategy = "ascending",
 				scroll_strategy = "cycle",
@@ -106,7 +105,7 @@ return {
 		map("n", "<leader>ft", builtin.builtin, { desc = "[F]ind [T]elescope" })
 		map("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
 		map("n", "<leader>fd", function()
-			builtin.diagnostics({ path_display = "hidden" })
+			builtin.diagnostics({ path_display = "hidden", wrap_results = true })
 		end, { desc = "[F]ind [D]iagnostics" })
 		map("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
 		map("n", "<leader>f.", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
