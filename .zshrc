@@ -37,22 +37,7 @@ plugins=(asdf)
 
 PROMPT="$ "
 
-background () {
-    echo $(cat ~/.config/kitty/current-theme.conf | grep -E -m1 '(light|dark)' | sed 's/## name: zenwritten_//');
-}
-
-# Neovim sets background after the first render, and it defaults to dark... so
-# it's quite jarring when you open nvim in light mode and it's dark for a split
-# second before it goes light.
-nvim_with_explicit_background () {
-    nvim --cmd "set background=$(background)" "$@"
-}
-
 alias sudo="sudo "
-alias nvim="nvim_with_explicit_background"
-alias light="kitten themes --reload-in=all zenwritten_light"
-alias dark="kitten themes --reload-in=all zenwritten_dark"
-set -o emacs
 
 # .dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -92,10 +77,11 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # pnpm
-export HUSKY=0
 export PNPM_HOME="/Users/tdfirth/Library/pnpm"
-PATH="$PNPM_HOME:$PATH"
-alias pnx="pnpm exec nx "
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
 
 # Kubectl autocompletion
@@ -119,20 +105,8 @@ export PATH="$HOME/.local/zig:$PATH"
 export MODULAR_HOME="$HOME/.modular"
 export PATH="$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH"
 
-# clojure
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if [ -f "/Users/tdfirth/miniconda3/etc/profile.d/conda.sh" ]; then
-    . "/Users/tdfirth/miniconda3/etc/profile.d/conda.sh"
-else
-    export PATH="/Users/tdfirth/miniconda3/bin:$PATH"
-fi
-# <<< conda initialize <<<
-
 
 . "$HOME/.cargo/env"
+
+export HUSKY=0
+

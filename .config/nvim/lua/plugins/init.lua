@@ -1,14 +1,22 @@
 return {
 	{
-		"mcchrish/zenbones.nvim",
-		priority = 1000,
-		lazy = true,
-		dependencies = {
-			"rktjmp/lush.nvim",
-		},
-		init = function()
-			vim.cmd.colorscheme("zenwritten")
+		"projekt0n/github-nvim-theme",
+		name = "github-theme",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			require("github-theme").setup({
+				-- ...
+			})
+
+			vim.cmd("colorscheme github_dark")
 		end,
+	},
+	{
+		"f-person/auto-dark-mode.nvim",
+		opts = {
+			fallback = "light",
+		},
 	},
 	{
 		"nvim-lualine/lualine.nvim",
