@@ -12,7 +12,7 @@ vim.diagnostic.config({
 vim.lsp.config('ty', {
   cmd = { 'ty', 'server' },
   filetypes = { 'python' },
-  root_markers = { 'pyproject.toml', '.git' },
+  root_markers = { 'pyproject.toml' },
 })
 
 vim.lsp.enable('ty')

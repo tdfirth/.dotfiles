@@ -36,7 +36,3 @@ map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
 map("n", "*", "*N")
 map("n", "#", "#N")
 map("n", "<C-CR>", ":noh<CR>", { silent = true })
-
--- Paste without overwriting register in visual
-vim.cmd('vnoremap p "0p')
-vim.cmd('vnoremap P "0P')
