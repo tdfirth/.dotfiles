@@ -26,11 +26,14 @@ map("t", "<Esc>", "<C-\\><C-n>", { silent = true })
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- Move lines with Alt-j/k
-map("n", "<A-k>", ":m .-2<CR>==", { silent = true })
-map("n", "<A-j>", ":m .+1<CR>==", { silent = true })
-map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
-map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
+-- Move lines
+map("n", "<M-Down>", ":m .+1<CR>==", { silent = true })
+map("n", "<M-Up>", ":m .-2<CR>==", { silent = true })
+map("i", "<M-Down>", "<Esc>:m .+1<CR>==gi", { silent = true })
+map("i", "<M-Up>", "<Esc>:m .-2<CR>==gi", { silent = true })
+
+-- Diagnostic float
+map("n", "<M-k>", vim.diagnostic.open_float, { silent = true })
 
 -- Search
 map("n", "*", "*N")
