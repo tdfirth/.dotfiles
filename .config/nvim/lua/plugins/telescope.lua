@@ -24,15 +24,12 @@ return {
 				results_title = false,
 				prompt_title = false,
 				dynamic_preview_title = true,
-				layout_strategy = "bottom_pane",
+				layout_strategy = "horizontal",
 				layout_config = {
-					height = 0.6,
-				},
-				border = true,
-				borderchars = {
-					prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
-					results = { " " },
-					preview = { " " },
+					width = 0.95,
+					height = 0.95,
+					preview_width = 0.55,
+					prompt_position = "top",
 				},
 
 				selection_strategy = "reset",
@@ -54,8 +51,7 @@ return {
 
 				mappings = {
 					i = {
-						["<C-a>"] = actions.select_all,
-						["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+						["<M-q>"] = actions.select_all + actions.smart_send_to_qflist + actions.open_qflist,
 						["<CR>"] = actions.select_default + actions.center,
 						["<C-j>"] = require("telescope.actions").cycle_history_next,
 						["<C-k>"] = require("telescope.actions").cycle_history_prev,
@@ -63,8 +59,7 @@ return {
 					n = {
 						["<esc>"] = actions.close,
 						["<C-c>"] = actions.close,
-						["<C-a>"] = actions.select_all,
-						["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+						["<M-q>"] = actions.select_all + actions.smart_send_to_qflist + actions.open_qflist,
 						["<CR>"] = actions.select_default + actions.center,
 					},
 				},
@@ -96,29 +91,25 @@ return {
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("file_browser")
 
-		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
 		local map = vim.keymap.set
-		map("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
-		map("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
-		map("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
-		map("n", "<leader>ft", builtin.builtin, { desc = "[F]ind [T]elescope" })
-		map("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
-		map("n", "<leader>fd", function()
-			builtin.diagnostics({ path_display = "hidden", wrap_results = true })
-		end, { desc = "[F]ind [D]iagnostics" })
-		map("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
-		map("n", "<leader>f.", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
-		map("n", "<leader>fb", builtin.current_buffer_fuzzy_find, { desc = "[F]ind in [B]uffer" })
-		map("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-		map("n", "<C-/>", builtin.live_grep, { desc = "[L]ive [G]rep" })
-		map("n", "<C-p>", function()
-			require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", select_buffer = true })
-		end, { desc = "Browse Files" })
 
-		-- Shortcut for searching your Neovim configuration files
-		vim.keymap.set("n", "<leader>fn", function()
-			builtin.find_files({ cwd = vim.fn.stdpath("config") })
-		end, { desc = "[F]ind [N]eovim files" })
+		local function get_visual_selection()
+			vim.cmd('noau normal! "vy')
+			return vim.fn.getreg("v")
+		end
+
+		map("n", "<C-p>", builtin.find_files, { desc = "Find files" })
+		map("n", "<C-/>", builtin.live_grep, { desc = "Live grep" })
+		map("v", "<C-/>", function()
+			builtin.live_grep({ default_text = get_visual_selection() })
+		end, { desc = "Grep selection" })
+		map("n", "<C-b>", builtin.buffers, { desc = "Buffers" })
+		map("n", "<C-f>", builtin.current_buffer_fuzzy_find, { desc = "Find in buffer" })
+		map("n", "<M-d>", function()
+			builtin.diagnostics({ path_display = "hidden", wrap_results = true })
+		end, { desc = "Diagnostics" })
+		map("n", "<M-r>", builtin.resume, { desc = "Resume last picker" })
+		map("n", "<leader>h", builtin.help_tags, { desc = "Help tags" })
 	end,
 }

@@ -110,3 +110,18 @@ export PATH="$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH"
 
 export HUSKY=0
 
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+zstyle ':completion:*' menu select
+
+# C++
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export CC=clang
+export CXX=clang++
+
+# Sensei
+alias sensei-dev='uv run --project /Users/tdfirth/tdfirth.com/sensei sensei'
+
+# Faktory
+export FAKTORY_LICENSE=6e0a5a3d:eyJuIjoiVGhvbWFzIEZpcnRoIiwiZSI6ImVuZ2luZWVyaW5nQGNvdGVyYS5jbyIsImMiOiJlYmIyNDE5NzphMDM4MDU1OSIsInQiOjIwMH0

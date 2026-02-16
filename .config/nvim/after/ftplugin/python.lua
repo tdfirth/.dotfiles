@@ -1,11 +1,10 @@
-local python_arguments = {}
+vim.opt_local.makeprg = "ruff check --output-format=concise ; ty check --output-format concise"
+vim.opt_local.errorformat = "%f:%l:%c: %m"
 
--- TODO replace with path argument
-local flake8 = {
-  LintCommand = "flake8 --ignore=E501 --stdin-display-name ${INPUT} -",
-  lintStdin = true,
-  lintFormats = { "%f:%l:%c: %m" },
-}
-local isort = { formatCommand = "isort --quiet -", formatStdin = true }
-local yapf = { formatCommand = "yapf --quiet", formatStdin = true }
-local black = { formatCommand = "black --quiet -", formatStdin = true }
+vim.api.nvim_buf_create_user_command(0, "Fmt", "!ruff format %", {})
+
+vim.api.nvim_buf_create_user_command(0, "Check", function()
+  vim.cmd("lexpr system('ruff check --output-format=concise ' .. expand('%') .. ' ; ty check --output-format concise ' .. expand('%'))")
+  vim.cmd("lopen")
+end, {})
+
