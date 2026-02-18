@@ -36,12 +36,12 @@ return {
 				},
 				mappings = {
 					i = {
-						["<M-q>"] = actions.select_all + actions.smart_send_to_qflist + actions.open_qflist,
+						["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 						["<C-j>"] = actions.cycle_history_next,
 						["<C-k>"] = actions.cycle_history_prev,
 					},
 					n = {
-						["<M-q>"] = actions.select_all + actions.smart_send_to_qflist + actions.open_qflist,
+						["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 					},
 				},
 			},
@@ -58,15 +58,34 @@ return {
 		end
 
 		map("n", "<C-p>", builtin.find_files, { desc = "Find files" })
-		map("n", "<C-/>", builtin.live_grep, { desc = "Live grep" })
-		map("v", "<C-/>", function()
+		local function grep_selection()
 			builtin.live_grep({ default_text = get_visual_selection() })
-		end, { desc = "Grep selection" })
+		end
+
+		map("n", "<C-/>", builtin.live_grep, { desc = "Live grep" })
+		map("n", "<C-_>", builtin.live_grep, { desc = "Live grep" })
+		map("v", "<C-/>", grep_selection, { desc = "Grep selection" })
+		map("v", "<C-_>", grep_selection, { desc = "Grep selection" })
 		map("n", "<C-b>", builtin.buffers, { desc = "Buffers" })
 		map("n", "<C-f>", builtin.current_buffer_fuzzy_find, { desc = "Find in buffer" })
-		map("n", "<M-d>", function()
+		map("n", "<C-d>", function()
 			builtin.diagnostics({ path_display = "hidden", wrap_results = true })
 		end, { desc = "Diagnostics" })
+		map("n", "<C-s>", builtin.lsp_document_symbols, { desc = "Document symbols" })
+		map("n", "<C-g>", builtin.lsp_dynamic_workspace_symbols, { desc = "Workspace symbols" })
+		map("v", "<C-g>", function()
+			builtin.lsp_dynamic_workspace_symbols({ default_text = get_visual_selection() })
+		end, { desc = "Workspace symbols (selection)" })
+		map("n", "<leader>q", function()
+			local wins = vim.fn.getwininfo()
+			for _, win in ipairs(wins) do
+				if win.quickfix == 1 then
+					vim.cmd("cclose")
+					return
+				end
+			end
+			vim.cmd("copen")
+		end, { desc = "Toggle quickfix" })
 		map("n", "<M-r>", builtin.resume, { desc = "Resume last picker" })
 	end,
 }

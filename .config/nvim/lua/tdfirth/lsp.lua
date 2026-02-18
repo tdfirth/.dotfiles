@@ -1,4 +1,7 @@
 vim.diagnostic.config({
+  virtual_text = false,
+  virtual_lines = false,
+  underline = false,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "",
@@ -15,4 +18,11 @@ vim.lsp.config('ty', {
   root_markers = { 'pyproject.toml' },
 })
 
+vim.lsp.config('ruff', {
+  cmd = { 'ruff', 'server' },
+  filetypes = { 'python' },
+  root_markers = { 'pyproject.toml' },
+})
+
 vim.lsp.enable('ty')
+vim.lsp.enable('ruff')
