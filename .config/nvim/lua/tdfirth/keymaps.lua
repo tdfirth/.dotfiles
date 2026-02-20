@@ -24,6 +24,10 @@ map("i", "<M-Up>", "<Esc>:m .-2<CR>==gi", { silent = true })
 -- Diagnostic float
 map("n", "<M-S-k>", vim.diagnostic.open_float, { silent = true })
 
+-- Quickfix navigation
+map("n", "]q", "<CMD>cnext<CR>", { silent = true })
+map("n", "[q", "<CMD>cprev<CR>", { silent = true })
+
 -- Search
 map("n", "*", "*N")
 map("n", "#", "#N")
