@@ -1,3 +1,4 @@
+# 1. Shell options & history
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
@@ -32,24 +33,22 @@ setopt SHARE_HISTORY
 # Execute commands using history (e.g.: using !$) immediatel:
 unsetopt HIST_VERIFY
 
-clear
-plugins=(asdf)
-
+# 2. Prompt
 PROMPT="$ "
 
-alias sudo="sudo "
-
-# .dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-# User specific environment and startup programs
+# 3. Environment variables
 export EDITOR=nvim
+export HUSKY=0
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export FAKTORY_LICENSE=6e0a5a3d:eyJuIjoiVGhvbWFzIEZpcnRoIiwiZSI6ImVuZ2luZWVyaW5nQGNvdGVyYS5jbyIsImMiOiJlYmIyNDE5NzphMDM4MDU1OSIsInQiOjIwMH0
+export CC=clang
+export CXX=clang++
 
+# 4. PATH
 export PATH=/opt/homebrew/opt/libpq/bin:\
-$HOME/go/bin:\
-/usr/local/go/bin:\
-$HOME/.cargo/bin:\
+/opt/homebrew/opt/llvm/bin:\
 $HOME/.local/bin:\
+$HOME/.local/zig:\
 /usr/local/MacGPG2/bin:\
 /usr/local/bin:\
 /usr/bin:\
@@ -58,70 +57,50 @@ $HOME/.local/bin:\
 /sbin:\
 /usr/local/sbin
 
+# 5. Tool setup
+
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# completions
-fpath+=/opt/homebrew/share/zsh/site-functions
+# cargo/rust
+. "$HOME/.cargo/env"
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fnm (node)
+eval "$(fnm env --use-on-cd)"
 
-# asdf
-. "$HOME/.asdf/asdf.sh"
-
-# JS -----------------------------------------------
 # bun
-[ -s "/Users/tdfirth/.bun/_bun" ] && source "/Users/tdfirth/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/Users/tdfirth/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
-# Kubectl autocompletion
-export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# gcloud
+if [ -f "$HOME/.local/bin/google-cloud-sdk/path.zsh.inc" ]; then
+    . "$HOME/.local/bin/google-cloud-sdk/path.zsh.inc"
+fi
+if [ -f "$HOME/.local/bin/google-cloud-sdk/completion.zsh.inc" ]; then
+    . "$HOME/.local/bin/google-cloud-sdk/completion.zsh.inc"
+fi
+
+# kubectl
 source <(kubectl completion zsh)
 
-# GCLOUD -----------------------------------------------
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tdfirth/.local/bin/google-cloud-sdk/path.zsh.inc' ]; then 
-    . '/Users/tdfirth/.local/bin/google-cloud-sdk/path.zsh.inc'; 
-fi
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/tdfirth/.local/bin/google-cloud-sdk/completion.zsh.inc' ]; then 
-    . '/Users/tdfirth/.local/bin/google-cloud-sdk/completion.zsh.inc'; 
-fi
-
-# Zig
-export PATH="$HOME/.local/zig:$PATH"
-
-# mojo
-export MODULAR_HOME="$HOME/.modular"
-export PATH="$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH"
-
-
-. "$HOME/.cargo/env"
-
-export HUSKY=0
-
-
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
-
+# 6. Completions
+fpath+=/opt/homebrew/share/zsh/site-functions
+fpath+=~/.zfunc
+autoload -Uz compinit; compinit
 zstyle ':completion:*' menu select
 
-# C++
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export CC=clang
-export CXX=clang++
-
-# Sensei
-alias sensei-dev='uv run --project /Users/tdfirth/tdfirth.com/sensei sensei'
-
-# Faktory
-export FAKTORY_LICENSE=6e0a5a3d:eyJuIjoiVGhvbWFzIEZpcnRoIiwiZSI6ImVuZ2luZWVyaW5nQGNvdGVyYS5jbyIsImMiOiJlYmIyNDE5NzphMDM4MDU1OSIsInQiOjIwMH0
+# 7. Aliases
+alias sudo="sudo "
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias sensei-dev='uv run --project $HOME/tdfirth.com/sensei sensei'

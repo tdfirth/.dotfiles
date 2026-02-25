@@ -14,6 +14,18 @@ return {
 	config = function()
 		local actions = require("telescope.actions")
 		require("telescope").setup({
+			pickers = {
+				buffers = {
+					mappings = {
+						i = {
+							["<C-d>"] = actions.delete_buffer,
+						},
+						n = {
+							["<C-d>"] = actions.delete_buffer,
+						},
+					},
+				},
+			},
 			defaults = {
 				path_display = { truncate = 3 },
 				results_title = false,
@@ -69,8 +81,11 @@ return {
 		map("n", "<C-b>", builtin.buffers, { desc = "Buffers" })
 		map("n", "<C-f>", builtin.current_buffer_fuzzy_find, { desc = "Find in buffer" })
 		map("n", "<C-d>", function()
+			builtin.diagnostics({ bufnr = 0, wrap_results = true })
+		end, { desc = "Buffer diagnostics" })
+		map("n", "<C-S-d>", function()
 			builtin.diagnostics({ path_display = "hidden", wrap_results = true })
-		end, { desc = "Diagnostics" })
+		end, { desc = "Workspace diagnostics" })
 		map("n", "<C-s>", builtin.lsp_document_symbols, { desc = "Document symbols" })
 		map("n", "<C-g>", builtin.lsp_dynamic_workspace_symbols, { desc = "Workspace symbols" })
 		map("v", "<C-g>", function()
