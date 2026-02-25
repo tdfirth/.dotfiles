@@ -1,0 +1,7 @@
+[user]
+  name = Tom Firth
+	email = 16757412+tdfirth@users.noreply.github.com
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
