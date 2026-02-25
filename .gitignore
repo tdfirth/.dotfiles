@@ -8,3 +8,8 @@ Desktop/
 Downloads/
 Movies/
 Pictures/
+
+.DS_Store
+*.swp
+*.swo
+*~
